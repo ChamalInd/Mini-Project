@@ -1,0 +1,336 @@
+/* General Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+    color: #333;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.hidden {
+    display: none;
+}
+
+/* Login Styles */
+#login-container {
+    text-align: center;
+}
+
+#login-container h1 {
+    color: #ff6b9d;
+    margin-bottom: 0.5rem;
+}
+
+#login-container p {
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.form-group input, .form-group select, .form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #e1e5e9;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+    box-sizing: border-box;
+}
+
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    outline: none;
+    border-color: #ff6b9d;
+}
+
+button {
+    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 106, 157, 0.3);
+}
+
+.note {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 1rem;
+}
+
+/* App Container */
+#app-container header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e1e5e9;
+}
+
+#app-container h1 {
+    color: #ff6b9d;
+    margin: 0;
+}
+
+#logout-btn {
+    background-color: #e74c3c;
+}
+
+#logout-btn:hover {
+    background-color: #c0392b;
+}
+
+/* Navigation */
+nav {
+    margin-bottom: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.nav-btn {
+    background-color: #f8f9fa;
+    color: #333;
+    border: 2px solid #e1e5e9;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s;
+    flex: 1;
+    min-width: 120px;
+}
+
+.nav-btn:hover, .nav-btn.active {
+    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+    color: white;
+    border-color: #ff6b9d;
+}
+
+/* Sections */
+.section {
+    display: none;
+}
+
+.section.active {
+    display: block;
+}
+
+.section h2 {
+    color: #ff6b9d;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #e1e5e9;
+    padding-bottom: 0.5rem;
+}
+
+/* Student Cards */
+.student-card {
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    position: relative;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.student-card h3 {
+    margin-top: 0;
+    color: #333;
+}
+
+.student-card p {
+    margin: 0.5rem 0;
+    color: #666;
+}
+
+.card-actions {
+    margin-top: 1rem;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.action-btn {
+    flex: 1;
+    padding: 0.75rem;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.like-btn {
+    background-color: #27ae60;
+}
+
+.like-btn:hover {
+    background-color: #229954;
+}
+
+.pass-btn {
+    background-color: #e74c3c;
+}
+
+.pass-btn:hover {
+    background-color: #c0392b;
+}
+
+/* Matches */
+.match-card {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.match-card h4 {
+    margin: 0;
+    color: #333;
+}
+
+.match-card button {
+    background-color: #3498db;
+}
+
+.match-card button:hover {
+    background-color: #2980b9;
+}
+
+/* Messages */
+#conversations-list {
+    margin-bottom: 2rem;
+}
+
+.conversation-item {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.conversation-item:hover {
+    background-color: #e9ecef;
+}
+
+.conversation-item h4 {
+    margin: 0 0 0.5rem 0;
+    color: #333;
+}
+
+.conversation-item p {
+    margin: 0;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+#chat-container {
+    border: 2px solid #e1e5e9;
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+#chat-header {
+    border-bottom: 1px solid #e1e5e9;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+#chat-messages {
+    height: 300px;
+    overflow-y: auto;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+}
+
+.message {
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 4px;
+}
+
+.message.sent {
+    background-color: #dcf8c6;
+    text-align: right;
+}
+
+.message.received {
+    background-color: #ffffff;
+}
+
+#message-input-container {
+    display: flex;
+    gap: 0.5rem;
+}
+
+#message-input {
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid #e1e5e9;
+    border-radius: 4px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        margin: 1rem;
+        padding: 1rem;
+    }
+
+    nav {
+        flex-direction: column;
+    }
+
+    .nav-btn {
+        margin: 0.25rem 0;
+    }
+
+    .card-actions {
+        flex-direction: column;
+    }
+
+    .match-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .match-card button {
+        margin-top: 0.5rem;
+        width: 100%;
+    }
+}
