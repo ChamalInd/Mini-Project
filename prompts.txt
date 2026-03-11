@@ -3,3 +3,6 @@ make a website that has two tabs. one should be named O/L and the other as A/L. 
 make a website that has cooking recipies and a food tracking system to help university student who are staying at boardings
 
 make website for the students to enter an assignment pdf and the website should give details in it as a summarized manner. including deadlines, tasks, etc
+
+make a website for student portal. it should different tabs for unit conversions, exam countdown & study timers, and other ant convenient things for a university student
+
