@@ -1,0 +1,3 @@
+make a website that has two tabs. one should be named O/L and the other as A/L. in each tab make sure to add three content web pages that can be changes with a side bar buttons. the content pages should be as past papers, quizes and overall results. the content pages should be different for the two tabs so overall 6 content pages. make sure the content are on different web pages
+
+make a website that has cooking recipies and a food tracking system to help university student who are staying at boardings
