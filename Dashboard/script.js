@@ -102,3 +102,183 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+// button functionality wrapped in DOMContentLoaded
+// also attach sticky-banner behavior
+document.addEventListener('DOMContentLoaded', function() {
+        const logoutBtn = document.getElementById('logoutBtn');
+        const profileBtn = document.getElementById('profileBtn');
+        const profileMenu = document.getElementById('profileMenu');
+        const authModal = document.getElementById('authModal');
+        const accountModal = document.getElementById('accountModal');
+        const closeAuth = document.getElementById('closeAuth');
+        const closeAccount = document.getElementById('closeAccount');
+        const viewDetailsBtn = document.getElementById('viewDetailsBtn');
+        const logoutOption = document.getElementById('logoutBtn');
+        const authTabBtns = document.querySelectorAll('.auth-tab-btn');
+        const authForms = document.querySelectorAll('.auth-form');
+        const loginForm = document.getElementById('loginForm');
+        const signupForm = document.getElementById('signupForm');
+
+        // Only initialize auth/profile system if on home page (where elements exist)
+        if (!profileBtn) {
+            return; // Exit if profile button doesn't exist
+        }
+        const headerEl = document.querySelector('header');
+        const firstSection = document.querySelector('main section');
+        if (headerEl && firstSection) {
+            const title = firstSection.querySelector('h2');
+            if (title) {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'sticky-banner';
+                headerEl.parentNode.insertBefore(wrapper, headerEl);
+                wrapper.appendChild(headerEl);
+                wrapper.appendChild(title);
+            }
+        }
+
+        // Check if user is already logged in
+        const loggedInUser = localStorage.getItem('loggedInUser');
+        if (loggedInUser) {
+            const user = JSON.parse(loggedInUser);
+            profileBtn.textContent = `👤 ${user.name}`;
+            updateProfileMenu(user);
+        }
+
+        // Update profile menu with user info
+        function updateProfileMenu(user) {
+            document.getElementById('profileMenuName').textContent = user.name;
+            document.getElementById('profileMenuEmail').textContent = user.email;
+        }
+
+        // Profile button click - toggle menu or open auth modal
+        profileBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            if (loggedInUser) {
+                // Show profile menu if logged in
+                profileMenu.classList.toggle('open');
+            } else {
+                // Show auth modal if not logged in
+                authModal.classList.add('open');
+            }
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!profileMenu.contains(event.target) && event.target !== profileBtn) {
+                profileMenu.classList.remove('open');
+            }
+        });
+
+        // View account details
+        viewDetailsBtn.addEventListener('click', function() {
+            const user = JSON.parse(localStorage.getItem('loggedInUser'));
+            document.getElementById('detailsName').textContent = user.name;
+            document.getElementById('detailsEmail').textContent = user.email;
+            document.getElementById('detailsDate').textContent = new Date().toLocaleDateString();
+            profileMenu.classList.remove('open');
+            accountModal.classList.add('open');
+        });
+
+        // Logout from menu
+        logoutOption.addEventListener('click', function() {
+            if (confirm('Are you sure you want to logout?')) {
+                localStorage.removeItem('loggedInUser');
+                profileBtn.textContent = '👤 Login';
+                profileMenu.classList.remove('open');
+                location.reload();
+            }
+        });
+
+        // Close auth modal
+        closeAuth.addEventListener('click', function() {
+            authModal.classList.remove('open');
+        });
+
+        // Close account modal
+        closeAccount.addEventListener('click', function() {
+            accountModal.classList.remove('open');
+        });
+
+        // Close modals when clicking outside
+        window.addEventListener('click', function(event) {
+            if (event.target === authModal) {
+                authModal.classList.remove('open');
+            }
+            if (event.target === accountModal) {
+                accountModal.classList.remove('open');
+            }
+        });
+
+        // Tab switching
+        authTabBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all tabs and forms
+                authTabBtns.forEach(b => b.classList.remove('active'));
+                authForms.forEach(f => f.classList.remove('active'));
+
+                // Add active class to clicked tab
+                this.classList.add('active');
+                const tabName = this.getAttribute('data-tab');
+                document.getElementById(tabName + 'Form').classList.add('active');
+            });
+        });
+
+        // Login form submission
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+
+            // Get all registered users
+            const users = JSON.parse(localStorage.getItem('registeredUsers') || '[]');
+            const user = users.find(u => u.email === email && u.password === password);
+
+            if (user) {
+                // Login successful
+                localStorage.setItem('loggedInUser', JSON.stringify({ name: user.name, email: user.email }));
+                profileBtn.textContent = `👤 ${user.name}`;
+                updateProfileMenu(user);
+                authModal.classList.remove('open');
+                loginForm.reset();
+                alert('Login successful!');
+            } else {
+                alert('Invalid email or password');
+            }
+        });
+
+        // Signup form submission
+        signupForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('signupName').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            const confirmPassword = document.getElementById('signupConfirm').value;
+
+            if (password !== confirmPassword) {
+                alert('Passwords do not match');
+                return;
+            }
+
+            // Get existing users
+            const users = JSON.parse(localStorage.getItem('registeredUsers') || '[]');
+
+            // Check if email already exists
+            if (users.find(u => u.email === email)) {
+                alert('Email already registered');
+                return;
+            }
+
+            // Add new user
+            users.push({ name, email, password });
+            localStorage.setItem('registeredUsers', JSON.stringify(users));
+
+            // Auto login
+            localStorage.setItem('loggedInUser', JSON.stringify({ name, email }));
+            profileBtn.textContent = `👤 ${name}`;
+            updateProfileMenu({ name, email });
+            authModal.classList.remove('open');
+            signupForm.reset();
+            alert('Account created successfully!');
+        });
+    });
