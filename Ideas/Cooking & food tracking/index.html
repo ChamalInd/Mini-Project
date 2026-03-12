@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boarding Bites - Recipes & Food Tracking</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Boarding Bites</h1>
+        <p>Simple Recipes & Food Tracking for University Students</p>
+        <nav>
+            <a href="#recipes" class="nav-link">Recipes</a>
+            <a href="#tracking" class="nav-link">Food Tracking</a>
+        </nav>
+    </header>
+
+    <section id="recipes">
+        <h2>Cooking Recipes</h2>
+        <div class="recipe-grid">
+            <div class="recipe-card">
+                <h3>Quick Pasta</h3>
+                <p>Ingredients: Pasta, tomato sauce, cheese</p>
+                <p>Instructions: Boil pasta, heat sauce, mix and top with cheese.</p>
+            </div>
+            <div class="recipe-card">
+                <h3>Egg Fried Rice</h3>
+                <p>Ingredients: Rice, eggs, vegetables, soy sauce</p>
+                <p>Instructions: Cook rice, scramble eggs, stir-fry with veggies.</p>
+            </div>
+            <div class="recipe-card">
+                <h3>Simple Sandwich</h3>
+                <p>Ingredients: Bread, cheese, tomato, lettuce</p>
+                <p>Instructions: Layer ingredients between bread slices.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="tracking">
+        <h2>Food Tracking</h2>
+        <form id="food-form">
+            <input type="text" id="food-name" placeholder="Food Item" required>
+            <input type="number" id="calories" placeholder="Calories" required>
+            <input type="date" id="date" required>
+            <button type="submit">Add to Log</button>
+        </form>
+        <div id="food-log">
+            <h3>Your Food Log</h3>
+            <ul id="log-list"></ul>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
