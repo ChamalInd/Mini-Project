@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Kuppi | Peer-to-Peer Tutoring</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --dark: #0f172a;
+            --light: #f1f5f9;
+            --white: #ffffff;
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        body { font-family: 'Segoe UI', system-ui, sans-serif; margin: 0; background-color: var(--light); color: var(--dark); line-height: 1.6; }
+
+        /* Navigation */
+        .navbar { padding: 1rem 5%; background: var(--white); display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .btn-back { background: transparent; border: 1px solid #cbd5e1; padding: 8px 16px; border-radius: 6px; cursor: pointer; transition: 0.2s; font-weight: 600; }
+        .btn-back:hover { background: var(--light); }
+
+        /* Hero */
+        .hero { padding: 60px 5%; text-align: center; }
+        .hero h1 { font-size: 3rem; margin-bottom: 1rem; }
+        .btn-main { background: var(--primary); color: white; padding: 15px 30px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: 0.3s; }
+        .btn-main:hover { background: var(--primary-hover); }
+
+        /* Workflow Visual */
+        .workflow-section { text-align: center; padding: 40px 5%; }
+
+        /* Cards */
+        .features { padding: 40px 5%; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .card { background: var(--white); padding: 2rem; border-radius: 12px; box-shadow: var(--shadow); border-bottom: 4px solid var(--primary); }
+
+        /* Responsive Table */
+        .table-wrap { overflow-x: auto; padding: 0 5%; margin-bottom: 40px; }
+        table { width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; }
+        th { background: var(--dark); color: white; padding: 15px; text-align: left; }
+        td { padding: 15px; border-bottom: 1px solid #e2e8f0; }
+
+        footer { text-align: center; padding: 2rem; background: var(--dark); color: white; margin-top: 40px; }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <button onclick="history.back()" class="btn-back">← Go Back</button>
+    <div style="font-weight: bold; font-size: 1.2rem;">🎓 UniKuppi</div>
+</nav>
+
+<section class="hero">
+    <h1>Master Your Modules</h1>
+    <p>Get help from subject experts who have been in your shoes.</p>
+    <br>
+    <a href="booking.html" class="btn-main">Book a Session</a>
+</section>
+
+<section class="workflow-section">
+    <h2>How it Works</h2>
+    
+</section>
+
+<section class="features">
+    <div class="card"><h3>1-on-1 Help</h3><p>Personalized attention for difficult topics.</p></div>
+    <div class="card"><h3>Flexible Hours</h3><p>Schedule based on your availability.</p></div>
+    <div class="card"><h3>Subject Experts</h3><p>Verified seniors who aced the modules.</p></div>
+</section>
+
+<div class="table-wrap">
+    <table>
+        <thead><tr><th>Subject Area</th><th>Tutor Lead</th><th>Status</th></tr></thead>
+        <tbody>
+            <tr><td>Computer Science</td><td>Alice P.</td><td>Available</td></tr>
+            <tr><td>Civil Engineering</td><td>Mark S.</td><td>Full</td></tr>
+        </tbody>
+    </table>
+</div>
+
+<footer>&copy; 2026 University Kuppi - Supporting student academic success.</footer>
+
+</body>
+</html>
