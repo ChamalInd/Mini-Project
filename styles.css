@@ -993,3 +993,194 @@ td {
     font-size: 0.85rem;
     color: var(--events-text);
 }
+
+/* Focus Mode Page Specifics */
+.focus-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+@media (max-width: 900px) {
+    .focus-layout { grid-template-columns: 1fr; }
+}
+
+.timer-section, .music-player-section {
+    background: var(--section-bg);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+.timer-display {
+    font-size: 5rem;
+    font-weight: 800;
+    margin: 2rem 0;
+    color: var(--header-text);
+    font-family: monospace;
+}
+
+.timer-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.timer-btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    border: none;
+    background: var(--link-bg);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.timer-btn:hover { background: var(--link-hover-bg); }
+
+.timer-modes {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.mode-btn {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    border: 1px solid var(--card-border);
+    background: var(--card-bg);
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+.mode-btn.active {
+    background: var(--section-border);
+    color: white;
+    border-color: var(--section-border);
+}
+
+/* Oto Music Player Style */
+.oto-player {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 12px;
+}
+
+.album-art-container img {
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    object-fit: crop;
+    margin-bottom: 1rem;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+}
+
+.track-info h3 { margin-bottom: 0.25rem; }
+.track-info p { color: var(--events-text); font-size: 0.9rem; margin-bottom: 1.5rem; }
+
+.player-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.control-btn {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.play-btn {
+    width: 50px;
+    height: 50px;
+    background: var(--section-border);
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.noise-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+}
+
+.noise-btn {
+    padding: 0.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--card-border);
+    background: var(--card-bg);
+    color: var(--text-color);
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+.noise-btn.active {
+    background: var(--toggle-bg);
+    border-color: var(--section-border);
+}
+
+.upload-btn {
+    margin-top: 1.5rem;
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 8px;
+    border: 1px dashed var(--section-border);
+    background: transparent;
+    color: var(--section-border);
+    cursor: pointer;
+}
+
+/* Kuppi Page Specifics */
+.hero { text-align: center; padding: 3rem 1rem; }
+.hero h1 { font-size: 3rem; color: var(--header-text); margin-bottom: 1rem; }
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.card {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 12px;
+    border-bottom: 4px solid var(--section-border);
+    text-align: center;
+}
+
+.table-wrap {
+    margin-top: 2rem;
+    overflow-x: auto;
+}
+
+/* Booking Page Specifics */
+.booking-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.booking-form {
+    background: var(--section-bg);
+    padding: 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.booking-form h2 {
+    color: var(--header-text);
+    margin-bottom: 2rem;
+    text-align: center;
+}

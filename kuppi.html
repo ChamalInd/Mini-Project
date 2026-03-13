@@ -3,82 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>University Kuppi | Peer-to-Peer Tutoring</title>
-    <style>
-        :root {
-            --primary: #2563eb;
-            --primary-hover: #1d4ed8;
-            --dark: #0f172a;
-            --light: #f1f5f9;
-            --white: #ffffff;
-            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        }
-
-        body { font-family: 'Segoe UI', system-ui, sans-serif; margin: 0; background-color: var(--light); color: var(--dark); line-height: 1.6; }
-
-        /* Navigation */
-        .navbar { padding: 1rem 5%; background: var(--white); display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-        .btn-back { background: transparent; border: 1px solid #cbd5e1; padding: 8px 16px; border-radius: 6px; cursor: pointer; transition: 0.2s; font-weight: 600; }
-        .btn-back:hover { background: var(--light); }
-
-        /* Hero */
-        .hero { padding: 60px 5%; text-align: center; }
-        .hero h1 { font-size: 3rem; margin-bottom: 1rem; }
-        .btn-main { background: var(--primary); color: white; padding: 15px 30px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: 0.3s; }
-        .btn-main:hover { background: var(--primary-hover); }
-
-        /* Workflow Visual */
-        .workflow-section { text-align: center; padding: 40px 5%; }
-
-        /* Cards */
-        .features { padding: 40px 5%; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .card { background: var(--white); padding: 2rem; border-radius: 12px; box-shadow: var(--shadow); border-bottom: 4px solid var(--primary); }
-
-        /* Responsive Table */
-        .table-wrap { overflow-x: auto; padding: 0 5%; margin-bottom: 40px; }
-        table { width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; }
-        th { background: var(--dark); color: white; padding: 15px; text-align: left; }
-        td { padding: 15px; border-bottom: 1px solid #e2e8f0; }
-
-        footer { text-align: center; padding: 2rem; background: var(--dark); color: white; margin-top: 40px; }
-    </style>
+    <title>University Kuppi - Student Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <button class="menu-toggle" id="menuToggle">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </button>
+    <nav class="sidebar" id="sidebar">
+        <h2>Dashboard</h2>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="news.html">News</a></li>
+            <li><a href="student-portal.html">Student Portal</a></li>
+            <li><a href="resources.html" class="active">Resources</a></li>
+            <li><a href="stress-release.html">Stress Release</a></li>
+        </ul>
+        <button id="themeToggle" class="theme-toggle-btn">🌙 Dark Mode</button>
+    </nav>
+    <!-- Auth Modal -->
+    <div id="authModal" class="auth-modal">
+        <div class="auth-modal-content">
+            <button class="close-btn" id="closeAuth">&times;</button>
+            <div class="auth-tabs">
+                <button class="auth-tab-btn active" data-tab="login">Sign In</button>
+                <button class="auth-tab-btn" data-tab="signup">Sign Up</button>
+            </div>
+            <!-- Login Form -->
+            <form id="loginForm" class="auth-form active">
+                <h2>Sign In</h2>
+                <input type="email" id="loginEmail" placeholder="Email" required>
+                <input type="password" id="loginPassword" placeholder="Password" required>
+                <button type="submit" class="auth-btn">Sign In</button>
+            </form>
+            <!-- Sign Up Form -->
+            <form id="signupForm" class="auth-form">
+                <h2>Create Account</h2>
+                <input type="text" id="signupName" placeholder="Full Name" required>
+                <input type="email" id="signupEmail" placeholder="Email" required>
+                <input type="password" id="signupPassword" placeholder="Password" required>
+                <input type="password" id="signupConfirm" placeholder="Confirm Password" required>
+                <button type="submit" class="auth-btn">Sign Up</button>
+            </form>
+        </div>
+    </div>
+    <!-- Profile Button -->
+    <button id="profileBtn" class="profile-btn">👤 Login</button>
+    <!-- Profile Dropdown Menu -->
+    <div id="profileMenu" class="profile-menu">
+        <div class="profile-menu-header">
+            <p id="profileMenuName">User Name</p>
+            <p id="profileMenuEmail" class="menu-email">user@email.com</p>
+        </div>
+        <button id="viewDetailsBtn" class="profile-menu-option">📋 View Account Details</button>
+        <button id="logoutBtn" class="profile-menu-option logout-option">🚪 Logout</button>
+    </div>
+    <!-- Account Details Modal -->
+    <div id="accountModal" class="auth-modal">
+        <div class="auth-modal-content">
+            <button class="close-btn" id="closeAccount">&times;</button>
+            <h2>Account Details</h2>
+            <div class="account-details">
+                <p><strong>Name:</strong> <span id="detailsName">-</span></p>
+                <p><strong>Email:</strong> <span id="detailsEmail">-</span></p>
+                <p><strong>Member Since:</strong> <span id="detailsDate">-</span></p>
+            </div>
+        </div>
+    </div>
 
-<nav class="navbar">
-    <button onclick="history.back()" class="btn-back">← Go Back</button>
-    <div style="font-weight: bold; font-size: 1.2rem;">🎓 UniKuppi</div>
-</nav>
+    <main id="main">
+        <section class="hero">
+            <h1>Master Your Modules</h1>
+            <p>Get help from subject experts who have been in your shoes.</p>
+            <a href="booking.html" class="action-btn" style="margin-top: 2rem;">Book a Session</a>
+        </section>
 
-<section class="hero">
-    <h1>Master Your Modules</h1>
-    <p>Get help from subject experts who have been in your shoes.</p>
-    <br>
-    <a href="booking.html" class="btn-main">Book a Session</a>
-</section>
+        <section>
+            <h2>How it Works</h2>
+            <div class="features">
+                <div class="card"><h3>1-on-1 Help</h3><p>Personalized attention for difficult topics.</p></div>
+                <div class="card"><h3>Flexible Hours</h3><p>Schedule based on your availability.</p></div>
+                <div class="card"><h3>Subject Experts</h3><p>Verified seniors who aced the modules.</p></div>
+            </div>
+        </section>
 
-<section class="workflow-section">
-    <h2>How it Works</h2>
-    
-</section>
+        <section>
+            <h2>Tutor Availability</h2>
+            <div class="table-wrap">
+                <table>
+                    <thead><tr><th>Subject Area</th><th>Tutor Lead</th><th>Status</th></tr></thead>
+                    <tbody>
+                        <tr><td>Computer Science</td><td>Alice P.</td><td>Available</td></tr>
+                        <tr><td>Civil Engineering</td><td>Mark S.</td><td>Full</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
 
-<section class="features">
-    <div class="card"><h3>1-on-1 Help</h3><p>Personalized attention for difficult topics.</p></div>
-    <div class="card"><h3>Flexible Hours</h3><p>Schedule based on your availability.</p></div>
-    <div class="card"><h3>Subject Experts</h3><p>Verified seniors who aced the modules.</p></div>
-</section>
-
-<div class="table-wrap">
-    <table>
-        <thead><tr><th>Subject Area</th><th>Tutor Lead</th><th>Status</th></tr></thead>
-        <tbody>
-            <tr><td>Computer Science</td><td>Alice P.</td><td>Available</td></tr>
-            <tr><td>Civil Engineering</td><td>Mark S.</td><td>Full</td></tr>
-        </tbody>
-    </table>
-</div>
-
-<footer>&copy; 2026 University Kuppi - Supporting student academic success.</footer>
-
+    <script src="script.js"></script>
 </body>
 </html>
