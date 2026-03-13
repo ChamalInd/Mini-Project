@@ -31,9 +31,16 @@ document.addEventListener('DOMContentLoaded', function() {
     const sidebarLinks = document.querySelectorAll('.sidebar a');
 
     sidebarLinks.forEach(link => {
+        // mark active link
         if (link.getAttribute('href') === currentPage) {
             link.classList.add('active');
         }
+        // prevent reload if clicking the same page link repeatedly
+        link.addEventListener('click', function(e) {
+            if (link.getAttribute('href') === currentPage) {
+                e.preventDefault();
+            }
+        });
     });
 
     // restore open/closed status

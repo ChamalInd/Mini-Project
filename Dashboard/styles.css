@@ -616,6 +616,49 @@ section h2 {
     background-color: var(--link-hover-bg);
 }
 
+/* Light theme card hover text color and background adjustments */
+.light-theme .overview-item:hover h3,
+.light-theme .overview-item:hover p {
+    color: white;
+}
+
+.light-theme .news-item:hover h3,
+.light-theme .news-item:hover p {
+    color: white;
+}
+
+.light-theme .portal-item:hover h3,
+.light-theme .portal-item:hover p,
+.light-theme .resource-item:hover h3,
+.light-theme .resource-item:hover p,
+.light-theme .stress-item:hover h3,
+.light-theme .stress-item:hover p {
+    color: white;
+}
+
+.light-theme .events-list li:hover h3,
+.light-theme .events-list li:hover p {
+    color: white;
+}
+
+/* darken card background when hovered in light mode */
+.light-theme .overview-item:hover,
+.light-theme .news-item:hover,
+.light-theme .portal-item:hover,
+.light-theme .resource-item:hover,
+.light-theme .stress-item:hover,
+.light-theme .events-list li:hover {
+    background-color: #2c2c44;
+}
+
+.light-theme .read-more:hover {
+    color: rgb(255, 255, 255);
+}
+
+.light-theme .overview-link:hover {
+    color: white;
+}
+
 /* Responsive design */
 
 @media (max-width: 768px) {
