@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Help & Support</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="help.css">
+</head>
+<body>
+    <button class="menu-toggle" id="menuToggle">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </button>
+    <nav class="sidebar" id="sidebar">
+        <h2></h2>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="news.html">News</a></li>
+            <li><a href="student-portal.html">Student Portal</a></li>
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="stress-release.html">Stress Release</a></li>
+            <li><a href="help.html" class="active">IT Help</a></li>
+        </ul>
+        <button id="themeToggle" class="theme-toggle-btn">🌙 Dark Mode</button>
+    </nav>
+    <!-- Auth Modal -->
+    <div id="authModal" class="auth-modal">
+        <div class="auth-modal-content">
+            <button class="close-btn" id="closeAuth">&times;</button>
+            <div class="auth-tabs">
+                <button class="auth-tab-btn active" data-tab="login">Sign In</button>
+                <button class="auth-tab-btn" data-tab="signup">Sign Up</button>
+            </div>
+            <!-- Login Form -->
+            <form id="loginForm" class="auth-form active">
+                <h2>Sign In</h2>
+                <input type="email" id="loginEmail" placeholder="Email" required>
+                <input type="password" id="loginPassword" placeholder="Password" required>
+                <button type="submit" class="auth-btn">Sign In</button>
+            </form>
+            <!-- Sign Up Form -->
+            <form id="signupForm" class="auth-form">
+                <h2>Create Account</h2>
+                <input type="text" id="signupName" placeholder="Full Name" required>
+                <input type="email" id="signupEmail" placeholder="Email" required>
+                <input type="password" id="signupPassword" placeholder="Password" required>
+                <input type="password" id="signupConfirm" placeholder="Confirm Password" required>
+                <button type="submit" class="auth-btn">Sign Up</button>
+            </form>
+        </div>
+    </div>
+    <main id="main">
+        <section>
+            <h2>IT Help &amp; Support</h2>
+            <div class="help-channels">
+                <div class="help-item">
+                    <h3>🛠️ Support System</h3>
+                    <p>Submit a ticket through our centralized support portal; track progress and receive updates.</p>
+                    <a href="#" class="help-link">Open Support Portal</a>
+                </div>
+                <div class="help-item">
+                    <h3>💬 Live Chat</h3>
+                    <p>Chat live with an IT specialist for instant assistance on technical issues (9 AM–9 PM).</p>
+                    <a href="#" class="help-link">Start Chat</a>
+                </div>
+                <div class="help-item">
+                    <h3>📧 Email</h3>
+                    <p>Send us an email and our team will respond within one business day.</p>
+                    <a href="mailto:support@university.edu" class="help-link">support@university.edu</a>
+                </div>
+                <div class="help-item">
+                    <h3>📞 Phone Support</h3>
+                    <p>Call our help desk at <strong>1‑800‑123‑4567</strong> for immediate voice assistance.</p>
+                    <a href="tel:18001234567" class="help-link">Call Now</a>
+                </div>
+            </div>
+            <section class="faq-section">
+                <h3>Frequently Asked Questions</h3>
+                <div class="faq-item">
+                    <button class="faq-question">How do I reset my password?</button>
+                    <div class="faq-answer">
+                        <p>Head to the student portal login page and click "Forgot Password" to receive a reset link.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">What do I do if I can't access my email?</button>
+                    <div class="faq-answer">
+                        <p>Contact IT support via chat or phone so we can verify your account and restore access.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Where can I download required software?</button>
+                    <div class="faq-answer">
+                        <p>Software installers are available on the resources page under "Study Materials".</p>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </main>
+    <script src="script.js"></script>
+    <script src="help.js"></script>
+</body>
+</html>
