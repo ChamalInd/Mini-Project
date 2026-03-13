@@ -13,13 +13,13 @@
         <span class="bar"></span>
     </button>
     <nav class="sidebar" id="sidebar">
-        <h2></h2>
+        <h2>Dashboard</h2>
         <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="news.html">News</a></li>
             <li><a href="student-portal.html">Student Portal</a></li>
             <li><a href="resources.html">Resources</a></li>
-            <li><a href="stress-release.html" class="active">Stress Release</a></li>
+            <li><a href="stress-release.html">Stress Release</a></li>
         </ul>
         <button id="themeToggle" class="theme-toggle-btn">🌙 Dark Mode</button>
     </nav>
@@ -47,6 +47,29 @@
                 <input type="password" id="signupConfirm" placeholder="Confirm Password" required>
                 <button type="submit" class="auth-btn">Sign Up</button>
             </form>
+        </div>
+    </div>
+    <!-- Profile Button -->
+    <button id="profileBtn" class="profile-btn">👤 Login</button>
+    <!-- Profile Dropdown Menu -->
+    <div id="profileMenu" class="profile-menu">
+        <div class="profile-menu-header">
+            <p id="profileMenuName">User Name</p>
+            <p id="profileMenuEmail" class="menu-email">user@email.com</p>
+        </div>
+        <button id="viewDetailsBtn" class="profile-menu-option">📋 View Account Details</button>
+        <button id="logoutBtn" class="profile-menu-option logout-option">🚪 Logout</button>
+    </div>
+    <!-- Account Details Modal -->
+    <div id="accountModal" class="auth-modal">
+        <div class="auth-modal-content">
+            <button class="close-btn" id="closeAccount">&times;</button>
+            <h2>Account Details</h2>
+            <div class="account-details">
+                <p><strong>Name:</strong> <span id="detailsName">-</span></p>
+                <p><strong>Email:</strong> <span id="detailsEmail">-</span></p>
+                <p><strong>Member Since:</strong> <span id="detailsDate">-</span></p>
+            </div>
         </div>
     </div>
     <main id="main">

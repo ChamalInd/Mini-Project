@@ -3,296 +3,209 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Portal - CS Quiz</title>
-    <style>
-        :root {
-            /* Dark Theme (Default based on image) */
-            --bg-body: #1a1625;
-            --bg-sidebar: #2d2438;
-            --bg-card: #362f47;
-            --text-main: #ffffff;
-            --text-dim: #b9b2c7;
-            --accent: #a855f7;
-            --btn-blue: #38bdf8;
-            --border-gold: #f59e0b;
-        }
-
-        .light-mode {
-            --bg-body: #f3f4f6;
-            --bg-sidebar: #ffffff;
-            --bg-card: #ffffff;
-            --text-main: #1f2937;
-            --text-dim: #4b5563;
-            --accent: #8b5cf6;
-            --btn-blue: #0284c7;
-            --border-gold: #d97706;
-        }
-
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', sans-serif;
-            background-color: var(--bg-body);
-            color: var(--text-main);
-            display: flex;
-            min-height: 100vh;
-            transition: background 0.3s;
-        }
-
-        /* Sidebar Styles */
-        nav {
-            width: 240px;
-            background: var(--bg-sidebar);
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            box-shadow: 2px 0 10px rgba(0,0,0,0.2);
-        }
-
-        .nav-item {
-            padding: 12px 15px;
-            border-radius: 8px;
-            cursor: pointer;
-            color: var(--text-dim);
-            font-weight: 500;
-            transition: 0.2s;
-        }
-
-        .nav-item.active {
-            background: var(--accent);
-            color: white;
-        }
-
-        .nav-item:hover:not(.active) {
-            background: rgba(255,255,255,0.05);
-        }
-
-        /* Main Content */
-        main {
-            flex-grow: 1;
-            padding: 40px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .portal-container {
-            background: var(--bg-card);
-            width: 100%;
-            max-width: 1000px;
-            padding: 30px;
-            border-radius: 12px;
-            border-top: 4px solid var(--border-gold);
-        }
-
-        h1 { text-align: center; color: var(--accent); margin-bottom: 30px; }
-
-        /* Grid Layout from Image */
-        .quiz-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
-
-        .category-card {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.1);
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-        }
-
-        .light-mode .category-card { background: #f9fafb; border-color: #e5e7eb; }
-
-        .category-card h3 { margin-top: 0; color: var(--border-gold); }
-        .category-card p { font-size: 0.9rem; color: var(--text-dim); line-height: 1.5; height: 60px; }
-
-        .action-btn {
-            background: var(--btn-blue);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            width: 100%;
-            transition: filter 0.2s;
-        }
-
-        .action-btn:hover { filter: brightness(1.1); }
-
-        /* Quiz UI */
-        .hidden { display: none; }
-        .question-box { margin-top: 20px; }
-        .option-btn {
-            display: block; width: 100%; padding: 15px; margin: 10px 0;
-            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
-            color: var(--text-main); border-radius: 8px; text-align: left; cursor: pointer;
-        }
-        .light-mode .option-btn { background: white; border-color: #d1d5db; color: #1f2937; }
-        .option-btn.selected { background: var(--accent); border-color: var(--accent); color: white; }
-
-        #theme-toggle {
-            margin-top: auto;
-            background: var(--accent);
-            color: white;
-            border: none;
-            padding: 12px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-    </style>
+    <title>Quiz Center - Student Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-<nav>
-    <div style="font-size: 1.5rem; font-weight: bold; margin-bottom: 30px; color: var(--accent);">X</div>
-    <div class="nav-item">Home</div>
-    <div class="nav-item">News</div>
-    <div class="nav-item active">Student Portal</div>
-    <div class="nav-item">Resources</div>
-    <div class="nav-item">Stress Release</div>
-    <button id="theme-toggle" onclick="toggleTheme()">🌙 Toggle Mode</button>
-</nav>
-
-<main>
-    <div class="portal-container">
-        <div id="menu-screen">
-            <h1>Student Portal - Quiz Center</h1>
-            <div class="quiz-grid">
-                <div class="category-card">
-                    <h3>Lvl 100: Easy</h3>
-                    <p>Fundamentals of Python, HTML, and Basic Logic. Perfect for first-year revision.</p>
-                    <button class="action-btn" onclick="openModule('easy')">View Quizzes</button>
-                </div>
-                <div class="category-card">
-                    <h3>Lvl 200: Medium</h3>
-                    <p>Data Structures, SQL Databases, and Networking protocols. Core CS concepts.</p>
-                    <button class="action-btn" onclick="openModule('medium')">View Quizzes</button>
-                </div>
-                <div class="category-card">
-                    <h3>Lvl 400: Hard</h3>
-                    <p>Advanced Algorithms, AI, and Cybersecurity. Prepare for graduation level exams.</p>
-                    <button class="action-btn" onclick="openModule('hard')">View Quizzes</button>
-                </div>
+    <button class="menu-toggle" id="menuToggle">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </button>
+    <nav class="sidebar" id="sidebar">
+        <h2>Dashboard</h2>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="news.html">News</a></li>
+            <li><a href="student-portal.html">Student Portal</a></li>
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="stress-release.html">Stress Release</a></li>
+        </ul>
+        <button id="themeToggle" class="theme-toggle-btn">🌙 Dark Mode</button>
+    </nav>
+    <!-- Auth Modal -->
+    <div id="authModal" class="auth-modal">
+        <div class="auth-modal-content">
+            <button class="close-btn" id="closeAuth">&times;</button>
+            <div class="auth-tabs">
+                <button class="auth-tab-btn active" data-tab="login">Sign In</button>
+                <button class="auth-tab-btn" data-tab="signup">Sign Up</button>
             </div>
-        </div>
-
-        <div id="module-screen" class="hidden">
-            <h2 id="module-title" style="text-align: center;">Choose Topic</h2>
-            <div id="quiz-list" class="quiz-grid"></div>
-            <button class="action-btn" style="margin-top: 20px; background: var(--secondary);" onclick="showHome()">Back</button>
-        </div>
-
-        <div id="quiz-screen" class="hidden">
-            <h2 id="q-text">Question Text</h2>
-            <div id="options-box"></div>
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
-                <span id="q-progress">1/10</span>
-                <button class="action-btn" style="width: 120px;" onclick="handleNext()">Next</button>
-            </div>
-        </div>
-
-        <div id="result-screen" class="hidden" style="text-align: center;">
-            <h2>Quiz Complete!</h2>
-            <div id="score-display" style="font-size: 3rem; color: var(--btn-blue);">0/10</div>
-            <button class="action-btn" style="max-width: 200px;" onclick="location.reload()">Return to Portal</button>
+            <!-- Login Form -->
+            <form id="loginForm" class="auth-form active">
+                <h2>Sign In</h2>
+                <input type="email" id="loginEmail" placeholder="Email" required>
+                <input type="password" id="loginPassword" placeholder="Password" required>
+                <button type="submit" class="auth-btn">Sign In</button>
+            </form>
+            <!-- Sign Up Form -->
+            <form id="signupForm" class="auth-form">
+                <h2>Create Account</h2>
+                <input type="text" id="signupName" placeholder="Full Name" required>
+                <input type="email" id="signupEmail" placeholder="Email" required>
+                <input type="password" id="signupPassword" placeholder="Password" required>
+                <input type="password" id="signupConfirm" placeholder="Confirm Password" required>
+                <button type="submit" class="auth-btn">Sign Up</button>
+            </form>
         </div>
     </div>
-</main>
+    <!-- Profile Button -->
+    <button id="profileBtn" class="profile-btn">👤 Login</button>
+    <!-- Profile Dropdown Menu -->
+    <div id="profileMenu" class="profile-menu">
+        <div class="profile-menu-header">
+            <p id="profileMenuName">User Name</p>
+            <p id="profileMenuEmail" class="menu-email">user@email.com</p>
+        </div>
+        <button id="viewDetailsBtn" class="profile-menu-option">📋 View Account Details</button>
+        <button id="logoutBtn" class="profile-menu-option logout-option">🚪 Logout</button>
+    </div>
+    <!-- Account Details Modal -->
+    <div id="accountModal" class="auth-modal">
+        <div class="auth-modal-content">
+            <button class="close-btn" id="closeAccount">&times;</button>
+            <h2>Account Details</h2>
+            <div class="account-details">
+                <p><strong>Name:</strong> <span id="detailsName">-</span></p>
+                <p><strong>Email:</strong> <span id="detailsEmail">-</span></p>
+                <p><strong>Member Since:</strong> <span id="detailsDate">-</span></p>
+            </div>
+        </div>
+    </div>
+    <main id="main">
+        <section>
+            <div id="menu-screen">
+                <h1>Student Portal - Quiz Center</h1>
+                <div class="quiz-grid">
+                    <div class="category-card">
+                        <h3>Lvl 100: Easy</h3>
+                        <p>Fundamentals of Python, HTML, and Basic Logic. Perfect for first-year revision.</p>
+                        <button class="action-btn" onclick="openModule('easy')">View Quizzes</button>
+                    </div>
+                    <div class="category-card">
+                        <h3>Lvl 200: Medium</h3>
+                        <p>Data Structures, SQL Databases, and Networking protocols. Core CS concepts.</p>
+                        <button class="action-btn" onclick="openModule('medium')">View Quizzes</button>
+                    </div>
+                    <div class="category-card">
+                        <h3>Lvl 400: Hard</h3>
+                        <p>Advanced Algorithms, AI, and Cybersecurity. Prepare for graduation level exams.</p>
+                        <button class="action-btn" onclick="openModule('hard')">View Quizzes</button>
+                    </div>
+                </div>
+            </div>
 
-<script>
-    // Data Structure
-    const quizData = {
-        easy: [
-            { title: "Intro to Python", q: [{q: "Keyword for function?", a: ["func", "def", "lambda"], c: 1}, {q: "Comment symbol?", a: ["//", "#", "/*"], c: 1}, {q: "2**3?", a: ["6", "8", "9"], c: 1}, {q: "Boolean type?", a: ["bool", "int", "str"], c: 0}, {q: "List syntax?", a: ["[]", "{}", "()"], c: 0}, {q: "Input function?", a: ["get", "read", "input"], c: 2}, {q: "Exit loop?", a: ["stop", "break", "end"], c: 1}, {q: "String type?", a: ["str", "text", "char"], c: 0}, {q: "10/2?", a: ["5", "5.0", "2"], c: 1}, {q: "Import module?", a: ["using", "include", "import"], c: 2}]},
-            { title: "HTML Basics", q: Array(10).fill({q: "Which tag for Heading 1?", a: ["<h1/>", "<h1>", "<head>"], c: 1}) },
-            { title: "Binary", q: Array(10).fill({q: "Binary for 2?", a: ["01", "10", "11"], c: 1}) },
-            { title: "Hardware", q: Array(10).fill({q: "Storage type?", a: ["RAM", "SSD", "CPU"], c: 1}) },
-            { title: "Logic Gates", q: Array(10).fill({q: "AND Gate true if?", a: ["One is true", "Both true", "None true"], c: 1}) }
-        ],
-        medium: [
-            { title: "Data Structures", q: [{q: "LIFO structure?", a: ["Queue", "Stack", "Tree"], c: 1}, {q: "Array access speed?", a: ["O(1)", "O(n)", "O(log n)"], c: 0}, {q: "FIFO structure?", a: ["Queue", "Stack", "Map"], c: 0}, {q: "Tree root?", a: ["Bottom", "Top", "Leaf"], c: 1}, {q: "Linked list unit?", a: ["Pixel", "Node", "Bit"], c: 1}, {q: "Binary Tree children?", a: ["1", "2", "Unlimited"], c: 1}, {q: "Hash collision?", a: ["Safe", "Overlap", "Fast"], c: 1}, {q: "Graph edge?", a: ["Link", "Node", "Key"], c: 0}, {q: "Heap use?", a: ["Sorting", "Storing", "Both"], c: 2}, {q: "String length?", a: ["n", "n-1", "size"], c: 0}]},
-            { title: "SQL", q: Array(10).fill({q: "Command to fetch?", a: ["GET", "SELECT", "FIND"], c: 1}) },
-            { title: "Networking", q: Array(10).fill({q: "Protocol for web?", a: ["FTP", "HTTP", "SMTP"], c: 1}) },
-            { title: "OOP", q: Array(10).fill({q: "Object blueprint?", a: ["Class", "Method", "Variable"], c: 0}) },
-            { title: "OS", q: Array(10).fill({q: "Kernel role?", a: ["UI", "Core management", "Gaming"], c: 1}) }
-        ],
-        hard: [
-            { title: "Algorithms", q: [{q: "QuickSort worst case?", a: ["O(n)", "O(n log n)", "O(n^2)"], c: 2}, {q: "Dijkstra use?", a: ["Paths", "Sorting", "Hashing"], c: 0}, {q: "Merge sort stable?", a: ["Yes", "No", "Maybe"], c: 0}, {q: "P vs NP?", a: ["Easy vs Hard", "True vs False", "Math"], c: 0}, {q: "Dynamic Programming?", a: ["Memoization", "Loops", "Neither"], c: 0}, {q: "Greedy choice?", a: ["Global", "Local", "Random"], c: 1}, {q: "Traveling Salesman?", a: ["NP-Hard", "Easy", "Linear"], c: 0}, {q: "Binary Search?", a: ["O(log n)", "O(n)", "O(1)"], c: 0}, {q: "Trie use?", a: ["Words", "Numbers", "Images"], c: 0}, {q: "Red-Black Tree?", a: ["Balanced", "Unbalanced", "Linear"], c: 0}]},
-            { title: "Cybersecurity", q: Array(10).fill({q: "Encryption type?", a: ["AES", "UTF8", "HTML"], c: 0}) },
-            { title: "Compilers", q: Array(10).fill({q: "Parsing phase?", a: ["Lexer", "Syntax", "Output"], c: 1}) },
-            { title: "AI", q: Array(10).fill({q: "Neural network layer?", a: ["Hidden", "Visible", "Both"], c: 2}) },
-            { title: "Discrete Math", q: Array(10).fill({q: "Set theory?", a: ["Union", "Loop", "Function"], c: 0}) }
-        ]
-    };
+            <div id="module-screen" class="hidden">
+                <h2 id="module-title">Choose Topic</h2>
+                <div id="quiz-list" class="quiz-grid"></div>
+                <button class="action-btn" style="margin-top: 20px;" onclick="showHome()">Back</button>
+            </div>
 
-    let activeQ = []; let qIdx = 0; let score = 0; let selection = null;
+            <div id="quiz-screen" class="hidden">
+                <h2 id="q-text">Question Text</h2>
+                <div id="options-box"></div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
+                    <span id="q-progress">1/10</span>
+                    <button class="action-btn" style="width: 120px;" onclick="handleNext()">Next</button>
+                </div>
+            </div>
 
-    function toggleTheme() {
-        document.body.classList.toggle('light-mode');
-        const btn = document.getElementById('theme-toggle');
-        btn.innerText = document.body.classList.contains('light-mode') ? "☀️ Light Mode" : "🌙 Dark Mode";
-    }
+            <div id="result-screen" class="hidden" style="text-align: center;">
+                <h2>Quiz Complete!</h2>
+                <div id="score-display">0/10</div>
+                <button class="action-btn" style="max-width: 200px;" onclick="location.reload()">Return to Portal</button>
+            </div>
+        </section>
+    </main>
 
-    function openModule(lvl) {
-        document.getElementById('menu-screen').classList.add('hidden');
-        document.getElementById('module-screen').classList.remove('hidden');
-        const list = document.getElementById('quiz-list');
-        list.innerHTML = '';
-        quizData[lvl].forEach((m, i) => {
-            const card = document.createElement('div');
-            card.className = 'category-card';
-            card.innerHTML = `<h3>${m.title}</h3><p>10 Questions</p><button class="action-btn" onclick="startQuiz('${lvl}', ${i})">Start Quiz</button>`;
-            list.appendChild(card);
-        });
-    }
+    <script src="script.js"></script>
+    <script>
+        const quizData = {
+            easy: [
+                { id: 'easy_0', title: "Intro to Python", q: [{q: "Keyword for function?", a: ["func", "def", "lambda"], c: 1}, {q: "Comment symbol?", a: ["//", "#", "/*"], c: 1}, {q: "2**3?", a: ["6", "8", "9"], c: 1}, {q: "Boolean type?", a: ["bool", "int", "str"], c: 0}, {q: "List syntax?", a: ["[]", "{}", "()"], c: 0}, {q: "Input function?", a: ["get", "read", "input"], c: 2}, {q: "Exit loop?", a: ["stop", "break", "end"], c: 1}, {q: "String type?", a: ["str", "text", "char"], c: 0}, {q: "10/2?", a: ["5", "5.0", "2"], c: 1}, {q: "Import module?", a: ["using", "include", "import"], c: 2}]},
+                { id: 'easy_1', title: "HTML Basics", q: Array(10).fill({q: "Which tag for Heading 1?", a: ["<h1/>", "<h1>", "<head>"], c: 1}) },
+                { id: 'easy_2', title: "Binary", q: Array(10).fill({q: "Binary for 2?", a: ["01", "10", "11"], c: 1}) },
+                { id: 'easy_3', title: "Hardware", q: Array(10).fill({q: "Storage type?", a: ["RAM", "SSD", "CPU"], c: 1}) },
+                { id: 'easy_4', title: "Logic Gates", q: Array(10).fill({q: "AND Gate true if?", a: ["One is true", "Both true", "None true"], c: 1}) }
+            ],
+            medium: [
+                { id: 'medium_0', title: "Data Structures", q: [{q: "LIFO structure?", a: ["Queue", "Stack", "Tree"], c: 1}, {q: "Array access speed?", a: ["O(1)", "O(n)", "O(log n)"], c: 0}, {q: "FIFO structure?", a: ["Queue", "Stack", "Map"], c: 0}, {q: "Tree root?", a: ["Bottom", "Top", "Leaf"], c: 1}, {q: "Linked list unit?", a: ["Pixel", "Node", "Bit"], c: 1}, {q: "Binary Tree children?", a: ["1", "2", "Unlimited"], c: 1}, {q: "Hash collision?", a: ["Safe", "Overlap", "Fast"], c: 1}, {q: "Graph edge?", a: ["Link", "Node", "Key"], c: 0}, {q: "Heap use?", a: ["Sorting", "Storing", "Both"], c: 2}, {q: "String length?", a: ["n", "n-1", "size"], c: 0}]},
+                { id: 'medium_1', title: "SQL", q: Array(10).fill({q: "Command to fetch?", a: ["GET", "SELECT", "FIND"], c: 1}) },
+                { id: 'medium_2', title: "Networking", q: Array(10).fill({q: "Protocol for web?", a: ["FTP", "HTTP", "SMTP"], c: 1}) },
+                { id: 'medium_3', title: "OOP", q: Array(10).fill({q: "Object blueprint?", a: ["Class", "Method", "Variable"], c: 0}) },
+                { id: 'medium_4', title: "OS", q: Array(10).fill({q: "Kernel role?", a: ["UI", "Core management", "Gaming"], c: 1}) }
+            ],
+            hard: [
+                { id: 'hard_0', title: "Algorithms", q: [{q: "QuickSort worst case?", a: ["O(n)", "O(n log n)", "O(n^2)"], c: 2}, {q: "Dijkstra use?", a: ["Paths", "Sorting", "Hashing"], c: 0}, {q: "Merge sort stable?", a: ["Yes", "No", "Maybe"], c: 0}, {q: "P vs NP?", a: ["Easy vs Hard", "True vs False", "Math"], c: 0}, {q: "Dynamic Programming?", a: ["Memoization", "Loops", "Neither"], c: 0}, {q: "Greedy choice?", a: ["Global", "Local", "Random"], c: 1}, {q: "Traveling Salesman?", a: ["NP-Hard", "Easy", "Linear"], c: 0}, {q: "Binary Search?", a: ["O(log n)", "O(n)", "O(1)"], c: 0}, {q: "Trie use?", a: ["Words", "Numbers", "Images"], c: 0}, {q: "Red-Black Tree?", a: ["Balanced", "Unbalanced", "Linear"], c: 0}]},
+                { id: 'hard_1', title: "Cybersecurity", q: Array(10).fill({q: "Encryption type?", a: ["AES", "UTF8", "HTML"], c: 0}) },
+                { id: 'hard_2', title: "Compilers", q: Array(10).fill({q: "Parsing phase?", a: ["Lexer", "Syntax", "Output"], c: 1}) },
+                { id: 'hard_3', title: "AI", q: Array(10).fill({q: "Neural network layer?", a: ["Hidden", "Visible", "Both"], c: 2}) },
+                { id: 'hard_4', title: "Discrete Math", q: Array(10).fill({q: "Set theory?", a: ["Union", "Loop", "Function"], c: 0}) }
+            ]
+        };
 
-    function startQuiz(lvl, idx) {
-        activeQ = quizData[lvl][idx].q;
-        qIdx = 0; score = 0;
-        document.getElementById('module-screen').classList.add('hidden');
-        document.getElementById('quiz-screen').classList.remove('hidden');
-        renderQ();
-    }
+        let activeQ = []; let qIdx = 0; let score = 0; let selection = null; let activeQuizId = '';
 
-    function renderQ() {
-        const d = activeQ[qIdx];
-        selection = null;
-        document.getElementById('q-text').innerText = d.q;
-        document.getElementById('q-progress').innerText = `${qIdx+1} / 10`;
-        const box = document.getElementById('options-box');
-        box.innerHTML = '';
-        d.a.forEach((opt, i) => {
-            const b = document.createElement('button');
-            b.className = 'option-btn';
-            b.innerText = opt;
-            b.onclick = () => {
-                document.querySelectorAll('.option-btn').forEach(x => x.classList.remove('selected'));
-                b.classList.add('selected');
-                selection = i;
-            };
-            box.appendChild(b);
-        });
-    }
-
-    function handleNext() {
-        if(selection === null) return alert("Pick an answer!");
-        if(selection === activeQ[qIdx].c) score++;
-        qIdx++;
-        if(qIdx < 10) renderQ();
-        else {
-            document.getElementById('quiz-screen').classList.add('hidden');
-            document.getElementById('result-screen').classList.remove('hidden');
-            document.getElementById('score-display').innerText = `${score} / 10`;
+        function openModule(lvl) {
+            document.getElementById('menu-screen').classList.add('hidden');
+            document.getElementById('module-screen').classList.remove('hidden');
+            const list = document.getElementById('quiz-list');
+            list.innerHTML = '';
+            quizData[lvl].forEach((m, i) => {
+                const card = document.createElement('div');
+                card.className = 'category-card';
+                card.innerHTML = `<h3>${m.title}</h3><p>10 Questions</p><button class="action-btn" onclick="startQuiz('${lvl}', ${i})">Start Quiz</button>`;
+                list.appendChild(card);
+            });
         }
-    }
 
-    function showHome() {
-        document.getElementById('module-screen').classList.add('hidden');
-        document.getElementById('menu-screen').classList.remove('hidden');
-    }
-</script>
+        function startQuiz(lvl, idx) {
+            activeQ = quizData[lvl][idx].q;
+            activeQuizId = quizData[lvl][idx].id;
+            qIdx = 0; score = 0;
+            document.getElementById('module-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.remove('hidden');
+            renderQ();
+        }
+
+        function renderQ() {
+            const d = activeQ[qIdx];
+            selection = null;
+            document.getElementById('q-text').innerText = d.q;
+            document.getElementById('q-progress').innerText = `${qIdx+1} / 10`;
+            const box = document.getElementById('options-box');
+            box.innerHTML = '';
+            d.a.forEach((opt, i) => {
+                const b = document.createElement('button');
+                b.className = 'option-btn';
+                b.innerText = opt;
+                b.onclick = () => {
+                    document.querySelectorAll('.option-btn').forEach(x => x.classList.remove('selected'));
+                    b.classList.add('selected');
+                    selection = i;
+                };
+                box.appendChild(b);
+            });
+        }
+
+        function handleNext() {
+            if(selection === null) return alert("Pick an answer!");
+            if(selection === activeQ[qIdx].c) score++;
+            qIdx++;
+            if(qIdx < 10) renderQ();
+            else {
+                // Save score to localStorage for Grades page
+                localStorage.setItem(`quiz_${activeQuizId}`, score);
+                document.getElementById('quiz-screen').classList.add('hidden');
+                document.getElementById('result-screen').classList.remove('hidden');
+                document.getElementById('score-display').innerText = `${score} / 10`;
+            }
+        }
+
+        function showHome() {
+            document.getElementById('module-screen').classList.add('hidden');
+            document.getElementById('menu-screen').classList.remove('hidden');
+        }
+    </script>
 </body>
 </html>
