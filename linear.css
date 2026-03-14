@@ -387,7 +387,15 @@ body.light-theme .noise-btn { background: rgba(0,0,0,0.04) !important; border-co
     transition: all 0.2s !important;
     cursor: pointer !important;
 }
-.upload-btn:hover { border-color: #6366f1 !important; color: #a5b4fc !important; }
+.upload-btn:hover { border-color: #6366f1 !important; color: #6366f1 !important; }
+body.light-theme .upload-btn {
+    border-color: rgba(0,0,0,0.2) !important;
+    color: rgba(15,15,16,0.55) !important;
+}
+body.light-theme .upload-btn:hover {
+    border-color: #6366f1 !important;
+    color: #6366f1 !important;
+}
 
 .control-btn { color: rgba(255,255,255,0.5) !important; font-size: 1.2rem !important; transition: color 0.2s, transform 0.2s !important; }
 .control-btn:hover { color: #fff !important; transform: scale(1.12) !important; }
