@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>News - Student Dashboard</title>
+    <title>Security Alerts - Student Dashboard</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="linear.css">
 </head>
@@ -18,7 +18,7 @@
         </div>
         <button id="themeToggle" class="nav-theme-toggle">🌙 Dark Mode</button>
     </nav>
-    <!-- Auth Modal -->
+    <!-- Auth Modal & Profile (re-used from layout) -->
     <div id="authModal" class="auth-modal">
         <div class="auth-modal-content">
             <button class="close-btn" id="closeAuth">&times;</button>
@@ -26,14 +26,12 @@
                 <button class="auth-tab-btn active" data-tab="login">Sign In</button>
                 <button class="auth-tab-btn" data-tab="signup">Sign Up</button>
             </div>
-            <!-- Login Form -->
             <form id="loginForm" class="auth-form active">
                 <h2>Sign In</h2>
                 <input type="email" id="loginEmail" placeholder="Email" required>
                 <input type="password" id="loginPassword" placeholder="Password" required>
                 <button type="submit" class="auth-btn">Sign In</button>
             </form>
-            <!-- Sign Up Form -->
             <form id="signupForm" class="auth-form">
                 <h2>Create Account</h2>
                 <input type="text" id="signupName" placeholder="Full Name" required>
@@ -44,53 +42,42 @@
             </form>
         </div>
     </div>
-    <!-- Profile Button -->
     <button id="profileBtn" class="profile-btn">👤 Login</button>
-    <!-- Profile Dropdown Menu -->
     <div id="profileMenu" class="profile-menu">
         <div class="profile-menu-header">
             <p id="profileMenuName">User Name</p>
-            <p id="profileMenuEmail" class="menu-email"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="334640564173565e525a5f1d505c5e">[email&#160;protected]</a></p>
+            <p id="profileMenuEmail" class="menu-email">user@example.com</p>
         </div>
         <button id="viewDetailsBtn" class="profile-menu-option">📋 View Account Details</button>
         <button id="logoutBtn" class="profile-menu-option logout-option">🚪 Logout</button>
     </div>
-    <!-- Account Details Modal -->
-    <div id="accountModal" class="auth-modal">
-        <div class="auth-modal-content">
-            <button class="close-btn" id="closeAccount">&times;</button>
-            <h2>Account Details</h2>
-            <div class="account-details">
-                <p><strong>Name:</strong> <span id="detailsName">-</span></p>
-                <p><strong>Email:</strong> <span id="detailsEmail">-</span></p>
-                <p><strong>Member Since:</strong> <span id="detailsDate">-</span></p>
-            </div>
-        </div>
-    </div>
+
     <main id="main">
         <section>
             <div style="margin-bottom:2rem">
-                <span class="page-label">Campus Updates</span>
-                <h2 class="page-heading" style="border:none;padding:0;margin-bottom:0.4rem">Latest News</h2>
-                <p class="page-sub">Stay informed with announcements, events, and academic updates.</p>
+                <span class="page-label">Safety First</span>
+                <h2 class="page-heading" style="border:none;padding:0;margin-bottom:0.4rem">Security Alerts</h2>
+                <p class="page-sub">Urgent safety notices and security information for campus.</p>
             </div>
-            <div class="news-container">
-                <article class="news-item">
-                    <h3>News & Updates</h3>
-                    <p>Stay informed with the latest news from the university. New policies, important announcements, and academic updates are posted here regularly.</p>
-                    <a href="news-updates.html" class="read-more">View Updates</a>
-                </article>
-                <article class="news-item">
-                    <h3>Security Alerts</h3>
-                    <p>Stay informed about important security updates and safety announcements for the campus community.</p>
-                    <a href="security-alerts.html" class="read-more">View Alerts</a>
-                </article>
-                <article class="news-item">
-                    <h3>Lost And Found</h3>
-                    <p>Report lost items or claim found items on campus. Help keep our community safe and connected.</p>
-                    <a href="lost-found.html" class="read-more">View Items</a>
-                </article>
+            
+            <div class="news-list">
+                <div class="news-item" style="border-radius: 12px; padding: 1.5rem; background: rgba(220,38,38,0.1); border: 1px solid rgba(220,38,38,0.2); margin-bottom: 1rem;">
+                    <span style="font-size: 0.75rem; color: #ef4444; font-weight: 800;">CRITICAL: MARCH 14, 2026</span>
+                    <h3 style="margin: 0.5rem 0;">Fire Drill Notice - Science Building</h3>
+                    <p style="color: rgba(255,255,255,0.8); line-height: 1.6;">A scheduled fire drill will take place in the Science Building today at 2 PM. Please follow evacuation protocols and meet at designated assembly points.</p>
+                </div>
+                <div class="news-item" style="border-radius: 12px; padding: 1.5rem; background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.2); margin-bottom: 1rem;">
+                    <span style="font-size: 0.75rem; color: #f59e0b; font-weight: 800;">WARNING: MARCH 12, 2026</span>
+                    <h3 style="margin: 0.5rem 0;">Phishing Email Alert</h3>
+                    <p style="color: rgba(255,255,255,0.8); line-height: 1.6;">IT Security has detected a wave of phishing emails targeting students. Do not click on links from unknown senders or provide your university login credentials.</p>
+                </div>
+                <div class="news-item" style="border-radius: 12px; padding: 1.5rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); margin-bottom: 1rem;">
+                    <span style="font-size: 0.75rem; color: #818cf8; font-weight: 600;">MARCH 08, 2026</span>
+                    <h3 style="margin: 0.5rem 0;">New Campus Lighting in West Park</h3>
+                    <p style="color: rgba(255,255,255,0.6); line-height: 1.6;">Additional high-intensity LED lights have been installed along the West Park walkway to improve nighttime visibility and safety.</p>
+                </div>
             </div>
+            <a href="news.html" class="action-btn" style="display:inline-block; margin-top: 1rem; max-width: 150px; text-decoration: none; text-align:center;">Back to News</a>
         </section>
     </main>
     <script src="script.js"></script>

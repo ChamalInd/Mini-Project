@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lost & Found - Student Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="linear.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-tabs">
+            <a href="index.html">Home</a>
+            <a href="news.html">News</a>
+            <a href="student-portal.html">Student Portal</a>
+            <a href="resources.html">Resources</a>
+            <a href="stress-release.html">Stress Release</a>
+        </div>
+        <button id="themeToggle" class="nav-theme-toggle">🌙 Dark Mode</button>
+    </nav>
+    <!-- Auth Modal & Profile (re-used from layout) -->
+    <div id="authModal" class="auth-modal">
+        <div class="auth-modal-content">
+            <button class="close-btn" id="closeAuth">&times;</button>
+            <div class="auth-tabs">
+                <button class="auth-tab-btn active" data-tab="login">Sign In</button>
+                <button class="auth-tab-btn" data-tab="signup">Sign Up</button>
+            </div>
+            <form id="loginForm" class="auth-form active">
+                <h2>Sign In</h2>
+                <input type="email" id="loginEmail" placeholder="Email" required>
+                <input type="password" id="loginPassword" placeholder="Password" required>
+                <button type="submit" class="auth-btn">Sign In</button>
+            </form>
+            <form id="signupForm" class="auth-form">
+                <h2>Create Account</h2>
+                <input type="text" id="signupName" placeholder="Full Name" required>
+                <input type="email" id="signupEmail" placeholder="Email" required>
+                <input type="password" id="signupPassword" placeholder="Password" required>
+                <input type="password" id="signupConfirm" placeholder="Confirm Password" required>
+                <button type="submit" class="auth-btn">Sign Up</button>
+            </form>
+        </div>
+    </div>
+    <button id="profileBtn" class="profile-btn">👤 Login</button>
+    <div id="profileMenu" class="profile-menu">
+        <div class="profile-menu-header">
+            <p id="profileMenuName">User Name</p>
+            <p id="profileMenuEmail" class="menu-email">user@example.com</p>
+        </div>
+        <button id="viewDetailsBtn" class="profile-menu-option">📋 View Account Details</button>
+        <button id="logoutBtn" class="profile-menu-option logout-option">🚪 Logout</button>
+    </div>
+
+    <main id="main">
+        <section>
+            <div style="margin-bottom:2rem">
+                <span class="page-label">Campus Community</span>
+                <h2 class="page-heading" style="border:none;padding:0;margin-bottom:0.4rem">Lost & Found</h2>
+                <p class="page-sub">Report lost items or claim found items on campus.</p>
+            </div>
+            
+            <div style="display: flex; gap: 1rem; margin-bottom: 2rem;">
+                <button class="action-btn" style="max-width: 180px;">Report Lost Item</button>
+                <button class="action-btn" style="max-width: 180px; background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1);">Post Found Item</button>
+            </div>
+
+            <div class="news-list">
+                <div class="news-item" style="border-radius: 12px; padding: 1.5rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); margin-bottom: 1rem; display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <span style="font-size: 0.75rem; color: #10b981; font-weight: 600;">FOUND: MARCH 14, 2026</span>
+                        <h3 style="margin: 0.5rem 0;">Blue Water Bottle</h3>
+                        <p style="color: rgba(255,255,255,0.6);">Found at the Student Center. Metal finish, "Hydro" brand.</p>
+                    </div>
+                    <button class="read-more" style="background:none; border:none; cursor:pointer;">Claim It</button>
+                </div>
+                <div class="news-item" style="border-radius: 12px; padding: 1.5rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); margin-bottom: 1rem; display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <span style="font-size: 0.75rem; color: #ef4444; font-weight: 600;">LOST: MARCH 13, 2026</span>
+                        <h3 style="margin: 0.5rem 0;">Silver Laptop Charger</h3>
+                        <p style="color: rgba(255,255,255,0.6);">Left in Lecture Hall 4B. USB-C type.</p>
+                    </div>
+                    <button class="read-more" style="background:none; border:none; cursor:pointer;">I Found This</button>
+                </div>
+                <div class="news-item" style="border-radius: 12px; padding: 1.5rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); margin-bottom: 1rem; display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <span style="font-size: 0.75rem; color: #10b981; font-weight: 600;">FOUND: MARCH 11, 2026</span>
+                        <h3 style="margin: 0.5rem 0;">Bunch of Keys</h3>
+                        <p style="color: rgba(255,255,255,0.6);">Found near the West Gate. Has a red keychain.</p>
+                    </div>
+                    <button class="read-more" style="background:none; border:none; cursor:pointer;">Claim It</button>
+                </div>
+            </div>
+            <a href="news.html" class="action-btn" style="display:inline-block; margin-top: 1rem; max-width: 150px; text-decoration: none; text-align:center;">Back to News</a>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
