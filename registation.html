@@ -5,23 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Course Registration - Student Dashboard</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="linear.css">
 </head>
 <body>
-    <button class="menu-toggle" id="menuToggle">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-    </button>
-    <nav class="sidebar" id="sidebar">
-        <h2>Dashboard</h2>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="news.html">News</a></li>
-            <li><a href="student-portal.html">Student Portal</a></li>
-            <li><a href="resources.html">Resources</a></li>
-            <li><a href="stress-release.html">Stress Release</a></li>
-        </ul>
-        <button id="themeToggle" class="theme-toggle-btn">🌙 Dark Mode</button>
+    <nav class="navbar">
+        <div class="nav-tabs">
+            <a href="index.html">Home</a>
+            <a href="news.html">News</a>
+            <a href="student-portal.html">Student Portal</a>
+            <a href="resources.html">Resources</a>
+            <a href="stress-release.html">Stress Release</a>
+        </div>
+        <button id="themeToggle" class="nav-theme-toggle">🌙 Dark Mode</button>
     </nav>
     <!-- Auth Modal -->
     <div id="authModal" class="auth-modal">
@@ -55,7 +50,7 @@
     <div id="profileMenu" class="profile-menu">
         <div class="profile-menu-header">
             <p id="profileMenuName">User Name</p>
-            <p id="profileMenuEmail" class="menu-email">user@email.com</p>
+            <p id="profileMenuEmail" class="menu-email"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f085839582b0959d91999cde939f9d">[email&#160;protected]</a></p>
         </div>
         <button id="viewDetailsBtn" class="profile-menu-option">📋 View Account Details</button>
         <button id="logoutBtn" class="profile-menu-option logout-option">🚪 Logout</button>
@@ -74,6 +69,11 @@
     </div>
     <main id="main">
         <section>
+            <div style="margin-bottom:2rem">
+                <span class="page-label">Admissions</span>
+                <h2 class="page-heading" style="border:none;padding:0;margin-bottom:0.3rem">Course Registration</h2>
+                <p class="page-sub">Complete your enrollment for the 2026 academic year.</p>
+            </div>
             <div class="registration-card">
                 <div class="card-header">
                     <h1>University of Excellence</h1>
@@ -150,10 +150,11 @@
                     &copy; 2026 University Registrar's Office. All Rights Reserved.
                 </footer>
             </div>
+            </div>
         </section>
     </main>
 
-    <script src="script.js"></script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="script.js"></script>
     <script>
         function handleBack() {
             if (confirm("Are you sure you want to go back? Unsaved changes may be lost.")) {
@@ -168,9 +169,8 @@
             btn.style.opacity = "0.7";
             
             setTimeout(() => {
-                alert("Application Part 2 Saved Successfully!");
-                btn.innerHTML = "Save and Continue";
-                btn.style.opacity = "1";
+                alert('Registration submitted successfully! Our team will contact you soon.');
+                window.location.href = 'student-portal.html';
             }, 1500);
         });
     </script>

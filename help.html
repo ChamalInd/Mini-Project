@@ -5,23 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IT Help & Support</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="linear.css">
 </head>
 <body>
-    <button class="menu-toggle" id="menuToggle">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-    </button>
-    <nav class="sidebar" id="sidebar">
-        <h2>Dashboard</h2>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="news.html">News</a></li>
-            <li><a href="student-portal.html">Student Portal</a></li>
-            <li><a href="resources.html">Resources</a></li>
-            <li><a href="stress-release.html">Stress Release</a></li>
-        </ul>
-        <button id="themeToggle" class="theme-toggle-btn">🌙 Dark Mode</button>
+    <nav class="navbar">
+        <div class="nav-tabs">
+            <a href="index.html">Home</a>
+            <a href="news.html">News</a>
+            <a href="student-portal.html">Student Portal</a>
+            <a href="resources.html">Resources</a>
+            <a href="stress-release.html">Stress Release</a>
+        </div>
+        <button id="themeToggle" class="nav-theme-toggle">🌙 Dark Mode</button>
     </nav>
     <!-- Auth Modal -->
     <div id="authModal" class="auth-modal">
@@ -55,7 +50,7 @@
     <div id="profileMenu" class="profile-menu">
         <div class="profile-menu-header">
             <p id="profileMenuName">User Name</p>
-            <p id="profileMenuEmail" class="menu-email">user@email.com</p>
+            <p id="profileMenuEmail" class="menu-email"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3d484e584f7d58505c5451135e5250">[email&#160;protected]</a></p>
         </div>
         <button id="viewDetailsBtn" class="profile-menu-option">📋 View Account Details</button>
         <button id="logoutBtn" class="profile-menu-option logout-option">🚪 Logout</button>
@@ -74,7 +69,11 @@
     </div>
     <main id="main">
         <section>
-            <h2>IT Help &amp; Support</h2>
+            <div style="margin-bottom:2rem">
+                <span class="page-label">Support</span>
+                <h2 class="page-heading" style="border:none;padding:0;margin-bottom:0.4rem">IT Help &amp; Support</h2>
+                <p class="page-sub">Get technical help via ticket, live chat, email, or phone — we're here 24/7.</p>
+            </div>
             <div class="help-channels">
                 <div class="help-item">
                     <h3>🛠️ Support System</h3>
@@ -89,7 +88,7 @@
                 <div class="help-item">
                     <h3>📧 Email</h3>
                     <p>Send us an email and our team will respond within one business day.</p>
-                    <a href="mailto:support@university.edu" class="help-link">support@university.edu</a>
+                    <a href="/cdn-cgi/l/email-protection#52212722223d202612273c3b243720213b262b7c373627" class="help-link"><span class="__cf_email__" data-cfemail="1a696f6a6a75686e5a6f74736c7f6869736e63347f7e6f">[email&#160;protected]</span></a>
                 </div>
                 <div class="help-item">
                     <h3>📞 Phone Support</h3>
@@ -114,7 +113,7 @@
                 <div class="faq-item">
                     <button class="faq-question">Where can I download required software?</button>
                     <div class="faq-answer">
-                        <p>Software installers are available on the resources page under "Study Materials".</p>
+                        <p>You can download university-licensed software through the Software Center in the student portal.</p>
                     </div>
                 </div>
             </section>

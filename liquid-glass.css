@@ -1,0 +1,632 @@
+/*
+ * liquid-glass.css  ─  iOS 26 / visionOS Liquid Glass layer
+ * Loaded AFTER styles.css and linear.css.
+ * Overrides glass surfaces, navbar, cards, buttons, and inputs
+ * with the specular / tinted / refractive look from iOS 26.
+ */
+
+/* ═══════════════════════════════════════════════
+   1. CUSTOM PROPERTIES  (dark + light tokens)
+═══════════════════════════════════════════════ */
+:root {
+  /* glass fill */
+  --lg-fill:          rgba(255,255,255,0.08);
+  --lg-fill-hover:    rgba(255,255,255,0.13);
+  --lg-fill-active:   rgba(255,255,255,0.18);
+
+  /* borders */
+  --lg-border-top:    rgba(255,255,255,0.55);
+  --lg-border:        rgba(255,255,255,0.13);
+  --lg-border-bottom: rgba(0,0,0,0.35);
+
+  /* specular rim */
+  --lg-specular:      rgba(255,255,255,0.55);
+
+  /* blur */
+  --lg-blur:          blur(28px) saturate(200%) brightness(1.05);
+
+  /* tints */
+  --lg-tint-purple:   rgba(99,102,241,0.15);
+  --lg-tint-sky:      rgba(56,189,248,0.1);
+
+  /* shadow */
+  --lg-shadow:        0 8px 32px rgba(0,0,0,0.45),
+                      0 2px 8px rgba(0,0,0,0.3),
+                      inset 0 1px 0 var(--lg-border-top),
+                      inset 0 -1px 0 var(--lg-border-bottom);
+  --lg-shadow-sm:     0 4px 16px rgba(0,0,0,0.3),
+                      inset 0 1px 0 var(--lg-border-top),
+                      inset 0 -1px 0 var(--lg-border-bottom);
+
+  /* text */
+  --lg-text:          rgba(255,255,255,0.92);
+  --lg-text-dim:      rgba(255,255,255,0.45);
+  --lg-text-dimmer:   rgba(255,255,255,0.28);
+
+  /* accent */
+  --lg-accent:        #818cf8;
+  --lg-accent-glow:   rgba(99,102,241,0.35);
+}
+
+.light-theme {
+  --lg-fill:          rgba(255,255,255,0.55);
+  --lg-fill-hover:    rgba(255,255,255,0.72);
+  --lg-fill-active:   rgba(255,255,255,0.85);
+
+  --lg-border-top:    rgba(255,255,255,0.95);
+  --lg-border:        rgba(0,0,0,0.08);
+  --lg-border-bottom: rgba(0,0,0,0.1);
+
+  --lg-specular:      rgba(255,255,255,0.9);
+
+  --lg-blur:          blur(28px) saturate(180%) brightness(1.02);
+
+  --lg-tint-purple:   rgba(99,102,241,0.08);
+  --lg-tint-sky:      rgba(56,189,248,0.06);
+
+  --lg-shadow:        0 8px 32px rgba(0,0,0,0.12),
+                      0 2px 8px rgba(0,0,0,0.07),
+                      inset 0 1px 0 var(--lg-border-top),
+                      inset 0 -1px 0 rgba(0,0,0,0.06);
+  --lg-shadow-sm:     0 4px 16px rgba(0,0,0,0.08),
+                      inset 0 1px 0 var(--lg-border-top),
+                      inset 0 -1px 0 rgba(0,0,0,0.04);
+
+  --lg-text:          rgba(10,10,15,0.9);
+  --lg-text-dim:      rgba(10,10,15,0.5);
+  --lg-text-dimmer:   rgba(10,10,15,0.3);
+}
+
+/* ═══════════════════════════════════════════════
+   2. GLASS MIXIN — apply to any surface
+═══════════════════════════════════════════════ */
+.glass {
+  background:         var(--lg-fill) !important;
+  backdrop-filter:    var(--lg-blur) !important;
+  -webkit-backdrop-filter: var(--lg-blur) !important;
+  border:             1px solid var(--lg-border) !important;
+  box-shadow:         var(--lg-shadow) !important;
+}
+
+/* ═══════════════════════════════════════════════
+   3. NAVBAR  — true liquid glass bar
+═══════════════════════════════════════════════ */
+.navbar {
+  /* near-transparent fill — background bleeds through fully */
+  background:              rgba(255,255,255,0.04) !important;
+  backdrop-filter:         blur(40px) saturate(180%) brightness(1.1) !important;
+  -webkit-backdrop-filter: blur(40px) saturate(180%) brightness(1.1) !important;
+  /* bottom edge only — no top border so it feels weightless */
+  border-top:    none !important;
+  border-left:   none !important;
+  border-right:  none !important;
+  border-bottom: 1px solid rgba(255,255,255,0.08) !important;
+  /* single bright specular streak at very top */
+  box-shadow:    inset 0 1px 0 rgba(255,255,255,0.18),
+                 0 1px 0 rgba(0,0,0,0.4),
+                 0 8px 32px rgba(0,0,0,0.12) !important;
+}
+
+.light-theme .navbar {
+  background:              rgba(255,255,255,0.45) !important;
+  backdrop-filter:         blur(40px) saturate(160%) brightness(1.04) !important;
+  -webkit-backdrop-filter: blur(40px) saturate(160%) brightness(1.04) !important;
+  border-bottom:           1px solid rgba(255,255,255,0.7) !important;
+  box-shadow:    inset 0 1px 0 rgba(255,255,255,0.92),
+                 0 1px 0 rgba(0,0,0,0.06),
+                 0 8px 24px rgba(0,0,0,0.05) !important;
+}
+
+/* Tab pill container — also near-transparent */
+.nav-tabs {
+  background:   rgba(255,255,255,0.06) !important;
+  border:       1px solid rgba(255,255,255,0.1) !important;
+  box-shadow:   inset 0 1px 0 rgba(255,255,255,0.12),
+                inset 0 -1px 0 rgba(0,0,0,0.18) !important;
+  border-radius: 12px !important;
+  padding:       0.28rem !important;
+}
+.light-theme .nav-tabs {
+  background:   rgba(255,255,255,0.35) !important;
+  border:       1px solid rgba(255,255,255,0.75) !important;
+  box-shadow:   inset 0 1px 0 rgba(255,255,255,0.9),
+                inset 0 -1px 0 rgba(0,0,0,0.04) !important;
+}
+
+.nav-tabs a {
+  color:       rgba(255,255,255,0.52) !important;
+  border-radius: 8px !important;
+  font-size:   0.875rem !important;
+  font-weight: 500 !important;
+  transition:  all 0.22s cubic-bezier(0.4,0,0.2,1) !important;
+}
+.light-theme .nav-tabs a {
+  color:       rgba(10,10,20,0.48) !important;
+}
+.nav-tabs a:hover {
+  color:       rgba(255,255,255,0.85) !important;
+  background:  rgba(255,255,255,0.08) !important;
+}
+.light-theme .nav-tabs a:hover {
+  color:       rgba(10,10,20,0.8) !important;
+  background:  rgba(0,0,0,0.05) !important;
+}
+.nav-tabs a.active {
+  color:       rgba(255,255,255,0.95) !important;
+  background:  rgba(255,255,255,0.14) !important;
+  backdrop-filter:         blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  box-shadow:  inset 0 1px 0 rgba(255,255,255,0.3),
+               inset 0 -1px 0 rgba(0,0,0,0.15),
+               0 2px 8px rgba(0,0,0,0.2) !important;
+  border:      1px solid rgba(255,255,255,0.15) !important;
+}
+.light-theme .nav-tabs a.active {
+  color:       rgba(10,10,20,0.9) !important;
+  background:  rgba(255,255,255,0.72) !important;
+  box-shadow:  inset 0 1px 0 rgba(255,255,255,0.95),
+               0 2px 8px rgba(0,0,0,0.06) !important;
+  border:      1px solid rgba(255,255,255,0.8) !important;
+}
+
+/* Theme toggle — ghost glass icon */
+.nav-theme-toggle {
+  background:              rgba(255,255,255,0.07) !important;
+  backdrop-filter:         blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border:      1px solid rgba(255,255,255,0.1) !important;
+  box-shadow:  inset 0 1px 0 rgba(255,255,255,0.18),
+               inset 0 -1px 0 rgba(0,0,0,0.12) !important;
+  color:       rgba(255,255,255,0.7) !important;
+}
+.light-theme .nav-theme-toggle {
+  background:  rgba(255,255,255,0.4) !important;
+  border:      1px solid rgba(255,255,255,0.75) !important;
+  box-shadow:  inset 0 1px 0 rgba(255,255,255,0.9) !important;
+  color:       rgba(10,10,20,0.6) !important;
+}
+.nav-theme-toggle:hover {
+  background:  rgba(255,255,255,0.13) !important;
+  transform:   scale(1.08) !important;
+}
+.light-theme .nav-theme-toggle:hover {
+  background:  rgba(255,255,255,0.65) !important;
+}
+
+/* ═══════════════════════════════════════════════
+   4. PROFILE BUTTON & MENU
+═══════════════════════════════════════════════ */
+.profile-btn {
+  background:         var(--lg-fill) !important;
+  backdrop-filter:    var(--lg-blur) !important;
+  -webkit-backdrop-filter: var(--lg-blur) !important;
+  border:             1px solid var(--lg-border) !important;
+  box-shadow:         inset 0 1px 0 var(--lg-border-top),
+                      0 4px 16px rgba(0,0,0,0.3) !important;
+  color:              var(--lg-text) !important;
+}
+.profile-btn:hover {
+  background:         var(--lg-fill-hover) !important;
+  transform:          scale(1.04) !important;
+}
+
+.profile-menu {
+  background:         rgba(18,18,28,0.82) !important;
+  backdrop-filter:    blur(40px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(40px) saturate(200%) !important;
+  border:             1px solid var(--lg-border) !important;
+  box-shadow:         inset 0 1px 0 var(--lg-border-top),
+                      0 20px 60px rgba(0,0,0,0.55) !important;
+  border-radius:      16px !important;
+}
+.light-theme .profile-menu {
+  background:         rgba(255,255,255,0.82) !important;
+}
+.profile-menu-option:hover {
+  background:         var(--lg-fill-hover) !important;
+}
+
+/* ═══════════════════════════════════════════════
+   5. SECTIONS & CARDS
+═══════════════════════════════════════════════ */
+section {
+  background:         var(--lg-fill) !important;
+  backdrop-filter:    var(--lg-blur) !important;
+  -webkit-backdrop-filter: var(--lg-blur) !important;
+  border:             1px solid var(--lg-border) !important;
+  box-shadow:         var(--lg-shadow) !important;
+  border-radius:      20px !important;
+  position:           relative !important;
+  overflow:           hidden !important;
+}
+
+/* top specular streak on every section */
+section::before {
+  content:            '' !important;
+  position:           absolute !important;
+  top:                0 !important; left:0 !important; right:0 !important;
+  height:             1px !important;
+  background:         linear-gradient(90deg, transparent 5%, var(--lg-specular) 35%, var(--lg-specular) 65%, transparent 95%) !important;
+  opacity:            0.6 !important;
+  pointer-events:     none !important;
+  z-index:            1 !important;
+}
+
+/* Generic cards */
+.news-item, .portal-item, .resource-item, .stress-item,
+.overview-item, .category-card, .help-item,
+.event-card, .timer-section, .music-player-section,
+.oto-player, .booking-form, .registration-card,
+.gpa-card, .day-column, .course-card {
+  background:         rgba(255,255,255,0.06) !important;
+  backdrop-filter:    blur(20px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(160%) !important;
+  border:             1px solid var(--lg-border) !important;
+  box-shadow:         inset 0 1px 0 rgba(255,255,255,0.18),
+                      inset 0 -1px 0 rgba(0,0,0,0.15),
+                      0 4px 20px rgba(0,0,0,0.3) !important;
+  border-radius:      16px !important;
+  transition:         all 0.3s cubic-bezier(0.4,0,0.2,1) !important;
+  position:           relative !important;
+  overflow:           hidden !important;
+}
+
+/* card specular */
+.news-item::before, .portal-item::before, .resource-item::before,
+.stress-item::before, .overview-item::before, .category-card::before,
+.help-item::before {
+  content:            '' !important;
+  position:           absolute !important;
+  top: 0 !important; left:0 !important; right:0 !important;
+  height:             1px !important;
+  background:         linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent) !important;
+  pointer-events:     none !important;
+}
+
+/* card hover — lift + tint */
+.news-item:hover, .portal-item:hover, .resource-item:hover,
+.stress-item:hover, .overview-item:hover, .category-card:hover,
+.help-item:hover {
+  background:         rgba(255,255,255,0.11) !important;
+  border-color:       rgba(255,255,255,0.22) !important;
+  box-shadow:         inset 0 1px 0 rgba(255,255,255,0.28),
+                      inset 0 -1px 0 rgba(0,0,0,0.2),
+                      0 16px 48px rgba(0,0,0,0.5) !important;
+  transform:          translateY(-5px) scale(1.01) !important;
+}
+
+.light-theme .news-item, .light-theme .portal-item,
+.light-theme .resource-item, .light-theme .stress-item,
+.light-theme .overview-item, .light-theme .category-card,
+.light-theme .help-item {
+  background:         rgba(255,255,255,0.55) !important;
+  border:             1px solid rgba(255,255,255,0.8) !important;
+  box-shadow:         inset 0 1px 0 rgba(255,255,255,0.95),
+                      0 4px 20px rgba(0,0,0,0.08) !important;
+}
+.light-theme .news-item:hover, .light-theme .portal-item:hover,
+.light-theme .resource-item:hover, .light-theme .stress-item:hover,
+.light-theme .overview-item:hover, .light-theme .category-card:hover,
+.light-theme .help-item:hover {
+  background:         rgba(255,255,255,0.78) !important;
+  box-shadow:         inset 0 1px 0 rgba(255,255,255,1),
+                      0 12px 40px rgba(0,0,0,0.12) !important;
+}
+
+/* ═══════════════════════════════════════════════
+   6. BUTTONS & LINKS (CTA)
+═══════════════════════════════════════════════ */
+.read-more, .portal-link, .resource-link, .stress-link,
+.overview-link, .action-btn, .help-link,
+.hero-btn-primary, .btn-next, .auth-btn {
+  background:         rgba(99,102,241,0.75) !important;
+  backdrop-filter:    blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border:             1px solid rgba(129,140,248,0.5) !important;
+  box-shadow:         inset 0 1px 0 rgba(255,255,255,0.25),
+                      inset 0 -1px 0 rgba(0,0,0,0.2),
+                      0 4px 20px rgba(99,102,241,0.3) !important;
+  color:              #fff !important;
+  font-weight:        500 !important;
+  transition:         all 0.22s cubic-bezier(0.4,0,0.2,1) !important;
+}
+.read-more:hover, .portal-link:hover, .resource-link:hover,
+.stress-link:hover, .overview-link:hover, .action-btn:hover,
+.help-link:hover, .hero-btn-primary:hover, .btn-next:hover,
+.auth-btn:hover {
+  background:         rgba(99,102,241,0.9) !important;
+  box-shadow:         inset 0 1px 0 rgba(255,255,255,0.3),
+                      0 8px 32px rgba(99,102,241,0.45) !important;
+  transform:          translateY(-2px) scale(1.03) !important;
+}
+
+/* Secondary button */
+.hero-btn-secondary, .btn-back {
+  background:         var(--lg-fill) !important;
+  backdrop-filter:    blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border:             1px solid var(--lg-border) !important;
+  box-shadow:         inset 0 1px 0 var(--lg-border-top),
+                      0 4px 12px rgba(0,0,0,0.2) !important;
+  color:              var(--lg-text) !important;
+}
+.hero-btn-secondary:hover, .btn-back:hover {
+  background:         var(--lg-fill-hover) !important;
+  transform:          translateY(-2px) !important;
+}
+
+/* Timer controls */
+.timer-btn {
+  background:         var(--lg-fill) !important;
+  backdrop-filter:    blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border:             1px solid var(--lg-border) !important;
+  box-shadow:         inset 0 1px 0 rgba(255,255,255,0.12),
+                      0 2px 8px rgba(0,0,0,0.2) !important;
+  color:              var(--lg-text) !important;
+}
+.timer-btn:hover {
+  background:         var(--lg-fill-hover) !important;
+}
+
+/* Mode pills */
+.mode-btn {
+  background:         rgba(255,255,255,0.04) !important;
+  border:             1px solid rgba(255,255,255,0.09) !important;
+  color:              var(--lg-text-dim) !important;
+}
+.mode-btn.active {
+  background:         rgba(99,102,241,0.7) !important;
+  backdrop-filter:    blur(12px) !important;
+  border:             1px solid rgba(129,140,248,0.45) !important;
+  box-shadow:         inset 0 1px 0 rgba(255,255,255,0.22),
+                      0 4px 16px rgba(99,102,241,0.3) !important;
+  color:              #fff !important;
+}
+
+/* Noise buttons */
+.noise-btn.active {
+  background:         rgba(99,102,241,0.18) !important;
+  border-color:       rgba(99,102,241,0.45) !important;
+  box-shadow:         inset 0 1px 0 rgba(255,255,255,0.12) !important;
+  color:              #a5b4fc !important;
+}
+
+/* ═══════════════════════════════════════════════
+   7. AUTH MODAL
+═══════════════════════════════════════════════ */
+.auth-modal-content {
+  background:         rgba(12,12,22,0.75) !important;
+  backdrop-filter:    blur(48px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(48px) saturate(200%) !important;
+  border:             1px solid var(--lg-border) !important;
+  box-shadow:         inset 0 1px 0 var(--lg-border-top),
+                      0 32px 80px rgba(0,0,0,0.6) !important;
+  border-radius:      24px !important;
+}
+.light-theme .auth-modal-content {
+  background:         rgba(248,248,255,0.78) !important;
+}
+
+.auth-form input, .input-box input, .input-box select, .input-box textarea, textarea {
+  background:         rgba(255,255,255,0.07) !important;
+  border:             1px solid rgba(255,255,255,0.12) !important;
+  box-shadow:         inset 0 1px 4px rgba(0,0,0,0.2),
+                      inset 0 -1px 0 rgba(255,255,255,0.04) !important;
+  color:              var(--lg-text) !important;
+  border-radius:      10px !important;
+}
+.auth-form input:focus, .input-box input:focus,
+.input-box select:focus, .input-box textarea:focus, textarea:focus {
+  border-color:       rgba(129,140,248,0.6) !important;
+  box-shadow:         inset 0 1px 4px rgba(0,0,0,0.15),
+                      0 0 0 3px rgba(99,102,241,0.18) !important;
+}
+.light-theme .auth-form input, .light-theme .input-box input,
+.light-theme .input-box select, .light-theme .input-box textarea {
+  background:         rgba(255,255,255,0.6) !important;
+  border:             1px solid rgba(255,255,255,0.9) !important;
+  box-shadow:         inset 0 1px 4px rgba(0,0,0,0.04) !important;
+  color:              rgba(10,10,15,0.9) !important;
+}
+
+/* ═══════════════════════════════════════════════
+   8. CLOSE BUTTON
+═══════════════════════════════════════════════ */
+.close-btn {
+  background:         rgba(255,255,255,0.1) !important;
+  border:             1px solid rgba(255,255,255,0.15) !important;
+  box-shadow:         inset 0 1px 0 rgba(255,255,255,0.2) !important;
+  color:              var(--lg-text) !important;
+}
+.close-btn:hover {
+  background:         rgba(255,255,255,0.18) !important;
+}
+
+/* ═══════════════════════════════════════════════
+   9. TABLES
+═══════════════════════════════════════════════ */
+table {
+  background:         var(--lg-fill) !important;
+  backdrop-filter:    blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border:             1px solid var(--lg-border) !important;
+  box-shadow:         inset 0 1px 0 rgba(255,255,255,0.12),
+                      0 4px 20px rgba(0,0,0,0.25) !important;
+  border-radius:      16px !important;
+  overflow:           hidden !important;
+}
+
+/* ═══════════════════════════════════════════════
+   10. FAQ / ACCORDION
+═══════════════════════════════════════════════ */
+.faq-item {
+  background:         rgba(255,255,255,0.05) !important;
+  backdrop-filter:    blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border:             1px solid var(--lg-border) !important;
+  box-shadow:         inset 0 1px 0 rgba(255,255,255,0.1) !important;
+  border-radius:      12px !important;
+}
+.light-theme .faq-item {
+  background:         rgba(255,255,255,0.55) !important;
+  border-color:       rgba(255,255,255,0.85) !important;
+}
+
+/* ═══════════════════════════════════════════════
+   11. HOMEPAGE HERO SECTION
+       (transparent so the canvas shows through)
+═══════════════════════════════════════════════ */
+section.hero-section {
+  background:         transparent !important;
+  border:             none !important;
+  box-shadow:         none !important;
+  backdrop-filter:    none !important;
+  -webkit-backdrop-filter: none !important;
+  overflow:           visible !important;
+}
+section.hero-section::before { display: none !important; }
+
+/* Stats bar — glass pill */
+.stats-bar {
+  background:         var(--lg-fill) !important;
+  backdrop-filter:    var(--lg-blur) !important;
+  -webkit-backdrop-filter: var(--lg-blur) !important;
+  border:             1px solid var(--lg-border) !important;
+  box-shadow:         inset 0 1px 0 var(--lg-border-top),
+                      0 8px 32px rgba(0,0,0,0.35) !important;
+  border-radius:      18px !important;
+}
+.stat-item { border-right-color: var(--lg-border) !important; }
+
+/* Feature grid */
+.features-grid {
+  border:             1px solid var(--lg-border) !important;
+  background:         rgba(255,255,255,0.04) !important;
+}
+.feature-card {
+  background:         rgba(255,255,255,0.04) !important;
+  backdrop-filter:    blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border:             none !important;
+}
+.feature-card:hover {
+  background:         rgba(255,255,255,0.08) !important;
+}
+
+/* Event cards */
+.event-card {
+  background:         var(--lg-fill) !important;
+  backdrop-filter:    blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border:             1px solid var(--lg-border) !important;
+  box-shadow:         inset 0 1px 0 rgba(255,255,255,0.12),
+                      0 4px 20px rgba(0,0,0,0.3) !important;
+  border-radius:      16px !important;
+}
+.event-card:hover {
+  background:         rgba(255,255,255,0.1) !important;
+  box-shadow:         inset 0 1px 0 rgba(255,255,255,0.2),
+                      0 12px 40px rgba(0,0,0,0.4) !important;
+}
+
+/* Feature icon */
+.feature-icon {
+  background:         var(--lg-fill) !important;
+  border:             1px solid rgba(99,102,241,0.3) !important;
+  box-shadow:         inset 0 1px 0 rgba(255,255,255,0.15) !important;
+}
+.feature-card:hover .feature-icon {
+  background:         rgba(99,102,241,0.25) !important;
+  box-shadow:         inset 0 1px 0 rgba(255,255,255,0.2),
+                      0 0 24px rgba(99,102,241,0.25) !important;
+}
+
+/* ═══════════════════════════════════════════════
+   12. BOOKING + REGISTRATION
+═══════════════════════════════════════════════ */
+.booking-form, .registration-card {
+  background:         rgba(255,255,255,0.06) !important;
+  backdrop-filter:    blur(32px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(32px) saturate(180%) !important;
+  border:             1px solid var(--lg-border) !important;
+  box-shadow:         inset 0 1px 0 rgba(255,255,255,0.15),
+                      0 16px 48px rgba(0,0,0,0.4) !important;
+  border-radius:      20px !important;
+}
+.card-header {
+  background:         rgba(99,102,241,0.08) !important;
+  border-bottom:      1px solid var(--lg-border) !important;
+}
+
+/* ═══════════════════════════════════════════════
+   13. GPA CARD
+═══════════════════════════════════════════════ */
+.gpa-card {
+  background:         rgba(99,102,241,0.12) !important;
+  border:             1px solid rgba(99,102,241,0.28) !important;
+  box-shadow:         inset 0 1px 0 rgba(255,255,255,0.15),
+                      0 4px 20px rgba(99,102,241,0.2) !important;
+  border-radius:      14px !important;
+}
+
+/* ═══════════════════════════════════════════════
+   14. SCHEDULE CARDS
+═══════════════════════════════════════════════ */
+.day-column {
+  background:         rgba(255,255,255,0.05) !important;
+  border:             1px solid var(--lg-border) !important;
+  box-shadow:         inset 0 1px 0 rgba(255,255,255,0.1) !important;
+  border-radius:      16px !important;
+}
+.course-card {
+  background:         rgba(255,255,255,0.06) !important;
+  border:             1px solid var(--lg-border) !important;
+  box-shadow:         inset 0 1px 0 rgba(255,255,255,0.1),
+                      0 2px 8px rgba(0,0,0,0.2) !important;
+  border-radius:      10px !important;
+}
+.course-card:hover {
+  background:         rgba(255,255,255,0.1) !important;
+}
+
+/* ═══════════════════════════════════════════════
+   15. OPTION BUTTONS (Quiz)
+═══════════════════════════════════════════════ */
+.option-btn {
+  background:         rgba(255,255,255,0.05) !important;
+  border:             1px solid var(--lg-border) !important;
+  box-shadow:         inset 0 1px 0 rgba(255,255,255,0.08) !important;
+}
+.option-btn:hover {
+  background:         rgba(255,255,255,0.1) !important;
+  border-color:       rgba(255,255,255,0.2) !important;
+}
+.option-btn.selected {
+  background:         rgba(99,102,241,0.18) !important;
+  border-color:       rgba(99,102,241,0.5) !important;
+  box-shadow:         inset 0 1px 0 rgba(255,255,255,0.15),
+                      0 0 0 2px rgba(99,102,241,0.15) !important;
+}
+
+/* ═══════════════════════════════════════════════
+   16. SCROLLBAR  — thin glass-style
+═══════════════════════════════════════════════ */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.15);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.25); }
+.light-theme ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); }
+
+/* ═══════════════════════════════════════════════
+   17. BODY BACKGROUND (inner pages)
+═══════════════════════════════════════════════ */
+body:not(.home-page) {
+  background: #050508 !important;
+}
+.light-theme:not(.home-page) {
+  background: #ededf5 !important;
+}

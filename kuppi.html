@@ -5,23 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>University Kuppi - Student Dashboard</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="linear.css">
 </head>
 <body>
-    <button class="menu-toggle" id="menuToggle">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-    </button>
-    <nav class="sidebar" id="sidebar">
-        <h2>Dashboard</h2>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="news.html">News</a></li>
-            <li><a href="student-portal.html">Student Portal</a></li>
-            <li><a href="resources.html" class="active">Resources</a></li>
-            <li><a href="stress-release.html">Stress Release</a></li>
-        </ul>
-        <button id="themeToggle" class="theme-toggle-btn">🌙 Dark Mode</button>
+    <nav class="navbar">
+        <div class="nav-tabs">
+            <a href="index.html">Home</a>
+            <a href="news.html">News</a>
+            <a href="student-portal.html">Student Portal</a>
+            <a href="resources.html">Resources</a>
+            <a href="stress-release.html">Stress Release</a>
+        </div>
+        <button id="themeToggle" class="nav-theme-toggle">🌙 Dark Mode</button>
     </nav>
     <!-- Auth Modal -->
     <div id="authModal" class="auth-modal">
@@ -55,7 +50,7 @@
     <div id="profileMenu" class="profile-menu">
         <div class="profile-menu-header">
             <p id="profileMenuName">User Name</p>
-            <p id="profileMenuEmail" class="menu-email">user@email.com</p>
+            <p id="profileMenuEmail" class="menu-email"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="790c0a1c0b391c14181015571a1614">[email&#160;protected]</a></p>
         </div>
         <button id="viewDetailsBtn" class="profile-menu-option">📋 View Account Details</button>
         <button id="logoutBtn" class="profile-menu-option logout-option">🚪 Logout</button>
@@ -74,10 +69,11 @@
     </div>
 
     <main id="main">
-        <section class="hero">
-            <h1>Master Your Modules</h1>
-            <p>Get help from subject experts who have been in your shoes.</p>
-            <a href="booking.html" class="action-btn" style="margin-top: 2rem;">Book a Session</a>
+        <section class="hero" style="background:transparent!important;border:none!important;backdrop-filter:none!important;box-shadow:none!important;padding:3rem 2rem 2rem;">
+            <span class="page-label">Peer Tutoring</span>
+            <h1 style="font-size:clamp(2rem,4.5vw,3.2rem);font-weight:700;letter-spacing:-0.05em;color:#fff;line-height:1.05;margin-bottom:1rem">Master Your<br><span style="background:linear-gradient(135deg,#c7d2fe,#818cf8,#6366f1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Modules</span></h1>
+            <p style="color:rgba(255,255,255,0.45);font-size:1rem;max-width:440px;line-height:1.65;margin-bottom:2rem">Get help from subject experts who have been in your shoes.</p>
+            <a href="booking.html" class="action-btn">Book a Session →</a>
         </section>
 
         <section>
@@ -102,7 +98,6 @@
             </div>
         </section>
     </main>
-
     <script src="script.js"></script>
 </body>
 </html>

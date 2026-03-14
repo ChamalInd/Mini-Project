@@ -5,23 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book a Session - Student Dashboard</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="linear.css">
 </head>
 <body>
-    <button class="menu-toggle" id="menuToggle">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-    </button>
-    <nav class="sidebar" id="sidebar">
-        <h2>Dashboard</h2>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="news.html">News</a></li>
-            <li><a href="student-portal.html">Student Portal</a></li>
-            <li><a href="resources.html" class="active">Resources</a></li>
-            <li><a href="stress-release.html">Stress Release</a></li>
-        </ul>
-        <button id="themeToggle" class="theme-toggle-btn">🌙 Dark Mode</button>
+    <nav class="navbar">
+        <div class="nav-tabs">
+            <a href="index.html">Home</a>
+            <a href="news.html">News</a>
+            <a href="student-portal.html">Student Portal</a>
+            <a href="resources.html">Resources</a>
+            <a href="stress-release.html">Stress Release</a>
+        </div>
+        <button id="themeToggle" class="nav-theme-toggle">🌙 Dark Mode</button>
     </nav>
     <!-- Auth Modal -->
     <div id="authModal" class="auth-modal">
@@ -55,7 +50,7 @@
     <div id="profileMenu" class="profile-menu">
         <div class="profile-menu-header">
             <p id="profileMenuName">User Name</p>
-            <p id="profileMenuEmail" class="menu-email">user@email.com</p>
+            <p id="profileMenuEmail" class="menu-email"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="8afff9eff8caefe7ebe3e6a4e9e5e7">[email&#160;protected]</a></p>
         </div>
         <button id="viewDetailsBtn" class="profile-menu-option">📋 View Account Details</button>
         <button id="logoutBtn" class="profile-menu-option logout-option">🚪 Logout</button>
@@ -74,7 +69,11 @@
     </div>
 
     <main id="main">
-        <section class="booking-container">
+        <section class="booking-container" style="background:transparent!important;border:none!important;backdrop-filter:none!important;box-shadow:none!important;">
+            <div style="margin-bottom:2rem">
+                <span class="page-label">Kuppi</span>
+                <h2 class="page-heading" style="border:none;padding:0;margin-bottom:0.3rem">Book a Session</h2>
+            </div>
             <div class="booking-form">
                 <a href="kuppi.html" class="overview-link" style="margin-bottom: 2rem;">← Back to Kuppi</a>
                 <h2>Book Your Kuppi Session</h2>
@@ -107,14 +106,15 @@
                     <button type="submit" class="action-btn" style="width: 100%;">Confirm Booking</button>
                 </form>
             </div>
+            </div>
         </section>
     </main>
 
-    <script src="script.js"></script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="script.js"></script>
     <script>
         document.getElementById('sessionBookingForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Kuppi session booked successfully!');
+            alert('Booking successful!');
             window.location.href = 'kuppi.html';
         });
     </script>

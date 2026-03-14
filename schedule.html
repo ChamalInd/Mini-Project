@@ -5,23 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>University Student Schedule 2026 - Student Dashboard</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="linear.css">
 </head>
 <body>
-    <button class="menu-toggle" id="menuToggle">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-    </button>
-    <nav class="sidebar" id="sidebar">
-        <h2>Dashboard</h2>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="news.html">News</a></li>
-            <li><a href="student-portal.html">Student Portal</a></li>
-            <li><a href="resources.html">Resources</a></li>
-            <li><a href="stress-release.html">Stress Release</a></li>
-        </ul>
-        <button id="themeToggle" class="theme-toggle-btn">🌙 Dark Mode</button>
+    <nav class="navbar">
+        <div class="nav-tabs">
+            <a href="index.html">Home</a>
+            <a href="news.html">News</a>
+            <a href="student-portal.html">Student Portal</a>
+            <a href="resources.html">Resources</a>
+            <a href="stress-release.html">Stress Release</a>
+        </div>
+        <button id="themeToggle" class="nav-theme-toggle">🌙 Dark Mode</button>
     </nav>
     <!-- Auth Modal -->
     <div id="authModal" class="auth-modal">
@@ -55,7 +50,7 @@
     <div id="profileMenu" class="profile-menu">
         <div class="profile-menu-header">
             <p id="profileMenuName">User Name</p>
-            <p id="profileMenuEmail" class="menu-email">user@email.com</p>
+            <p id="profileMenuEmail" class="menu-email"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e89d9b8d9aa88d85898184c68b8785">[email&#160;protected]</a></p>
         </div>
         <button id="viewDetailsBtn" class="profile-menu-option">📋 View Account Details</button>
         <button id="logoutBtn" class="profile-menu-option logout-option">🚪 Logout</button>
@@ -74,12 +69,13 @@
     </div>
 
     <main id="main">
-        <header>
-            <h1>Spring Semester 2026</h1>
-            <p>Welcome back! Here is your weekly schedule.</p>
-        </header>
+        <div style="padding: 2rem 2rem 1.5rem; position:relative; z-index:1">
+            <span class="page-label">Timetable</span>
+            <h1 style="font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:700;letter-spacing:-0.04em;color:#fff;line-height:1.1;margin-bottom:0.4rem">Spring Semester 2026</h1>
+            <p style="color:rgba(255,255,255,0.42);font-size:0.92rem">Welcome back — here is your weekly schedule.</p>
+        </div>
 
-        <section class="schedule-grid">
+        <section class="schedule-grid" style="margin:0 2rem 2rem;background:transparent!important;border:none!important;backdrop-filter:none!important;padding:0!important">
             <div class="day-column">
                 <div class="day-header">Monday</div>
                 <div class="course-card">
@@ -136,7 +132,6 @@
             </div>
         </section>
     </main>
-
     <script src="script.js"></script>
 </body>
 </html>

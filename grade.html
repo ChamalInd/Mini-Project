@@ -5,23 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Academic Transcript - Student Dashboard</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="linear.css">
 </head>
 <body>
-    <button class="menu-toggle" id="menuToggle">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-    </button>
-    <nav class="sidebar" id="sidebar">
-        <h2></h2>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="news.html">News</a></li>
-            <li><a href="student-portal.html">Student Portal</a></li>
-            <li><a href="resources.html">Resources</a></li>
-            <li><a href="stress-release.html">Stress Release</a></li>
-        </ul>
-        <button id="themeToggle" class="theme-toggle-btn">🌙 Dark Mode</button>
+    <nav class="navbar">
+        <div class="nav-tabs">
+            <a href="index.html">Home</a>
+            <a href="news.html">News</a>
+            <a href="student-portal.html">Student Portal</a>
+            <a href="resources.html">Resources</a>
+            <a href="stress-release.html">Stress Release</a>
+        </div>
+        <button id="themeToggle" class="nav-theme-toggle">🌙 Dark Mode</button>
     </nav>
     <!-- Auth Modal -->
     <div id="authModal" class="auth-modal">
@@ -55,7 +50,7 @@
     <div id="profileMenu" class="profile-menu">
         <div class="profile-menu-header">
             <p id="profileMenuName">User Name</p>
-            <p id="profileMenuEmail" class="menu-email">user@email.com</p>
+            <p id="profileMenuEmail" class="menu-email"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="572224322517323a363e3b7934383a">[email&#160;protected]</a></p>
         </div>
         <button id="viewDetailsBtn" class="profile-menu-option">📋 View Account Details</button>
         <button id="logoutBtn" class="profile-menu-option logout-option">🚪 Logout</button>
@@ -74,6 +69,9 @@
     </div>
     <main id="main">
         <section>
+            <div style="margin-bottom:1.5rem">
+                <span class="page-label">Academic Performance</span>
+            </div>
             <div class="header-flex">
                 <div>
                     <h1>Academic Transcript</h1>
@@ -104,7 +102,7 @@
         </section>
     </main>
 
-    <script src="script.js"></script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="script.js"></script>
     <script>
         function loadGrades() {
             const tbody = document.getElementById('grades-body');
@@ -154,13 +152,13 @@
         }
 
         function clearGrades() {
-            if(confirm("Are you sure you want to delete all academic records?")) {
-                localStorage.clear();
-                loadGrades();
+            if(confirm("Are you sure you want to clear all records?")) {
+                const modules = ['easy_0', 'easy_1', 'medium_0', 'hard_0'];
+                modules.forEach(id => localStorage.removeItem(`quiz_${id}`));
+                location.reload();
             }
         }
-
-        window.addEventListener('load', loadGrades);
+        window.onload = loadGrades;
     </script>
 </body>
 </html>
