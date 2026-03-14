@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resources - Student Dashboard</title>
+    <title>Past Papers - Student Dashboard</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="linear.css">
 </head>
@@ -18,6 +18,7 @@
         </div>
         <button id="themeToggle" class="nav-theme-toggle">🌙 Dark Mode</button>
     </nav>
+
     <!-- Auth Modal -->
     <div id="authModal" class="auth-modal">
         <div class="auth-modal-content">
@@ -44,17 +45,20 @@
             </form>
         </div>
     </div>
+
     <!-- Profile Button -->
     <button id="profileBtn" class="profile-btn">👤 Login</button>
+
     <!-- Profile Dropdown Menu -->
     <div id="profileMenu" class="profile-menu">
         <div class="profile-menu-header">
             <p id="profileMenuName">User Name</p>
-            <p id="profileMenuEmail" class="menu-email"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="473234223507222a262e2b6924282a">[email&#160;protected]</a></p>
+            <p id="profileMenuEmail" class="menu-email">user@example.com</p>
         </div>
         <button id="viewDetailsBtn" class="profile-menu-option">📋 View Account Details</button>
         <button id="logoutBtn" class="profile-menu-option logout-option">🚪 Logout</button>
     </div>
+
     <!-- Account Details Modal -->
     <div id="accountModal" class="auth-modal">
         <div class="auth-modal-content">
@@ -67,39 +71,80 @@
             </div>
         </div>
     </div>
+
     <main id="main">
         <section>
             <div style="margin-bottom:2rem">
-                <span class="page-label">Academic Tools</span>
-                <h2 class="page-heading" style="border:none;padding:0;margin-bottom:0.4rem">Resources</h2>
-                <p class="page-sub">Everything you need — past papers, tutoring, IT support, and study materials.</p>
+                <span class="page-label">Learning Materials</span>
+                <h2 class="page-heading" style="border:none;padding:0;margin-bottom:0.4rem">Past Papers</h2>
+                <p class="page-sub">Access previous exam papers categorized by year and semester.</p>
             </div>
+
             <div class="resources-container">
+                <!-- Year 1 -->
                 <div class="resource-item">
-                    <h3>📚 Past Papers</h3>
-                    <p>Access previous exam papers and study materials for various subjects.</p>
-                    <a href="past-papers.html" class="resource-link">View Past Papers</a>
+                    <h3>📅 Year 1</h3>
+                    <p>Foundation courses, introductory programming, and mathematics.</p>
+                    <div style="display: flex; gap: 0.5rem; justify-content: center; margin-top: 1rem;">
+                        <a href="#" class="resource-link">Semester 1</a>
+                        <a href="#" class="resource-link">Semester 2</a>
+                    </div>
                 </div>
+
+                <!-- Year 2 -->
                 <div class="resource-item">
-                    <h3>🧑‍🏫 Kuppi</h3>
-                    <p>Get help with your studies through tutoring services. Schedule one-on-one sessions with subject experts.</p>
-                    <a href="kuppi.html" class="resource-link">Find Kuppi</a>
+                    <h3>📅 Year 2</h3>
+                    <p>Data structures, algorithms, and software engineering principles.</p>
+                    <div style="display: flex; gap: 0.5rem; justify-content: center; margin-top: 1rem;">
+                        <a href="#" class="resource-link">Semester 1</a>
+                        <a href="#" class="resource-link">Semester 2</a>
+                    </div>
                 </div>
-               
+
+                <!-- Year 3 -->
                 <div class="resource-item">
-                    <h3>🖥️ IT Support</h3>
-                    <p>Get technical support for computers, software, and university systems. 24/7 help desk available.</p>
-                    <a href="help.html" class="resource-link">IT Help</a>
+                    <h3>📅 Year 3</h3>
+                    <p>Advanced networking, operating systems, and specialized electives.</p>
+                    <div style="display: flex; gap: 0.5rem; justify-content: center; margin-top: 1rem;">
+                        <a href="#" class="resource-link">Semester 1</a>
+                        <a href="#" class="resource-link">Semester 2</a>
+                    </div>
                 </div>
-                
+
+                <!-- Year 4 -->
                 <div class="resource-item">
-                    <h3>📑 Study Materials</h3>
-                    <p>Access a wide range of study materials, including textbooks, lecture notes, and online resources.</p>
-                    <a href="study-materials.html" class="resource-link">View Study Materials</a>
+                    <h3>📅 Year 4</h3>
+                    <p>Final year projects, advanced AI, and professional development.</p>
+                    <div style="display: flex; gap: 0.5rem; justify-content: center; margin-top: 1rem;">
+                        <a href="#" class="resource-link">Semester 1</a>
+                        <a href="#" class="resource-link">Semester 2</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Quick Filters</h2>
+            <div class="news-container">
+                <div class="news-item">
+                    <h3>Top Downloads</h3>
+                    <p>Most frequently accessed papers by students this week.</p>
+                    <a href="#" class="read-more">Browse Top List</a>
+                </div>
+                <div class="news-item">
+                    <h3>Recently Added</h3>
+                    <p>New papers from the last examination cycle are now available.</p>
+                    <a href="#" class="read-more">View Recent</a>
+                </div>
+                <div class="news-item">
+                    <h3>By Subject</h3>
+                    <p>Search for papers by specific subject code or name.</p>
+                    <a href="#" class="read-more">Search Subjects</a>
                 </div>
             </div>
         </section>
     </main>
+
     <script src="script.js"></script>
 </body>
 </html>
