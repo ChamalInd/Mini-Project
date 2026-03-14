@@ -3,9 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Center - Student Dashboard</title>
+    <title>Quiz & Grades - Student Dashboard</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="linear.css">
+    <style>
+        .hidden { display: none !important; }
+        .tab-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .tab-btn.active {
+            background: var(--accent-color, #6366f1);
+            color: white;
+            border-color: var(--accent-color, #6366f1);
+        }
+        .portal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar">
@@ -50,7 +75,7 @@
     <div id="profileMenu" class="profile-menu">
         <div class="profile-menu-header">
             <p id="profileMenuName">User Name</p>
-            <p id="profileMenuEmail" class="menu-email"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="176264726557727a767e7b3974787a">[email&#160;protected]</a></p>
+            <p id="profileMenuEmail" class="menu-email"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5b2e283e291b3e363a323775383436">[email&#160;protected]</a></p>
         </div>
         <button id="viewDetailsBtn" class="profile-menu-option">📋 View Account Details</button>
         <button id="logoutBtn" class="profile-menu-option logout-option">🚪 Logout</button>
@@ -68,14 +93,21 @@
         </div>
     </div>
     <main id="main">
-        <section>
-            <div style="margin-bottom:2rem">
-                <span class="page-label">Academic Practice</span>
-                <h2 class="page-heading" style="border:none;padding:0;margin-bottom:0.4rem">Quiz Center</h2>
-                <p class="page-sub">Test your knowledge across easy, medium, and hard CS topics.</p>
+        <div class="portal-header">
+            <div>
+                <span class="page-label">Academic Hub</span>
+                <h2 class="page-heading" style="border:none;padding:0;margin-bottom:0.4rem" id="hub-title">Quiz Center</h2>
+                <p class="page-sub" id="hub-sub">Test your knowledge across easy, medium, and hard CS topics.</p>
             </div>
+            <div style="display: flex; gap: 0.5rem;">
+                <button class="tab-btn active" id="quiz-tab-btn" onclick="switchTab('quiz')">Quiz</button>
+                <button class="tab-btn" id="grades-tab-btn" onclick="switchTab('grades')">Grades</button>
+            </div>
+        </div>
+
+        <!-- Quiz Section -->
+        <section id="quiz-section">
             <div id="menu-screen">
-                <h1>Student Portal - Quiz Center</h1>
                 <div class="quiz-grid">
                     <div class="category-card">
                         <h3>Lvl 100: Easy</h3>
@@ -113,13 +145,73 @@
             <div id="result-screen" class="hidden" style="text-align: center;">
                 <h2>Quiz Complete!</h2>
                 <div id="score-display">0/10</div>
-                <button class="action-btn" style="max-width: 200px;" onclick="location.reload()">Return to Portal</button>
+                <button class="action-btn" style="max-width: 200px; margin-top: 20px;" onclick="switchTab('grades')">View My Grades</button>
+                <button class="action-btn" style="max-width: 200px; margin-top: 10px; background: transparent; border: 1px solid rgba(255,255,255,0.2);" onclick="resetQuiz()">Take Another Quiz</button>
+            </div>
+        </section>
+
+        <!-- Grades Section -->
+        <section id="grades-section" class="hidden">
+            <div class="header-flex">
+                <div>
+                    <h1>Academic Transcript</h1>
+                    <p>Real-time performance tracking</p>
+                </div>
+                <div class="gpa-card">
+                    <div>Current GPA</div>
+                    <div id="gpa-val">0.00</div>
+                </div>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Module Name</th>
+                        <th>Level</th>
+                        <th>Score</th>
+                        <th>Grade</th>
+                    </tr>
+                </thead>
+                <tbody id="grades-body">
+                </tbody>
+            </table>
+
+            <div style="margin-top: 30px; text-align: right;">
+                <button class="clear-btn" onclick="clearGrades()">Reset All Records</button>
             </div>
         </section>
     </main>
 
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="script.js"></script>
     <script>
+        // --- Tab Switching Logic ---
+        function switchTab(tab) {
+            const quizSection = document.getElementById('quiz-section');
+            const gradesSection = document.getElementById('grades-section');
+            const quizBtn = document.getElementById('quiz-tab-btn');
+            const gradesBtn = document.getElementById('grades-tab-btn');
+            const hubTitle = document.getElementById('hub-title');
+            const hubSub = document.getElementById('hub-sub');
+
+            if (tab === 'quiz') {
+                quizSection.classList.remove('hidden');
+                gradesSection.classList.add('hidden');
+                quizBtn.classList.add('active');
+                gradesBtn.classList.remove('active');
+                hubTitle.innerText = "Quiz Center";
+                hubSub.innerText = "Test your knowledge across easy, medium, and hard CS topics.";
+            } else {
+                quizSection.classList.add('hidden');
+                gradesSection.classList.remove('hidden');
+                quizBtn.classList.remove('active');
+                gradesBtn.classList.add('active');
+                hubTitle.innerText = "Academic Performance";
+                hubSub.innerText = "Track your quiz results and calculated GPA.";
+                loadGrades();
+            }
+        }
+
+        // --- Quiz Logic ---
         const quizData = {
             easy: [
                 { id: 'easy_0', title: "Intro to Python", q: [{q: "Keyword for function?", a: ["func", "def", "lambda"], c: 1}, {q: "Comment symbol?", a: ["//", "#", "/*"], c: 1}, {q: "2**3?", a: ["6", "8", "9"], c: 1}, {q: "Boolean type?", a: ["bool", "int", "str"], c: 0}, {q: "List syntax?", a: ["[]", "{}", "()"], c: 0}, {q: "Input function?", a: ["get", "read", "input"], c: 2}, {q: "Exit loop?", a: ["stop", "break", "end"], c: 1}, {q: "String type?", a: ["str", "text", "char"], c: 0}, {q: "10/2?", a: ["5", "5.0", "2"], c: 1}, {q: "Import module?", a: ["using", "include", "import"], c: 2}]},
@@ -194,7 +286,6 @@
             qIdx++;
             if(qIdx < 10) renderQ();
             else {
-                // Save score to localStorage for Grades page
                 localStorage.setItem(`quiz_${activeQuizId}`, score);
                 document.getElementById('quiz-screen').classList.add('hidden');
                 document.getElementById('result-screen').classList.remove('hidden');
@@ -206,6 +297,77 @@
             document.getElementById('module-screen').classList.add('hidden');
             document.getElementById('menu-screen').classList.remove('hidden');
         }
+
+        function resetQuiz() {
+            document.getElementById('result-screen').classList.add('hidden');
+            document.getElementById('menu-screen').classList.remove('hidden');
+        }
+
+        // --- Grades Logic ---
+        function loadGrades() {
+            const tbody = document.getElementById('grades-body');
+            const modules = [
+                { id: 'easy_0', name: 'Intro to Python', lvl: '100' },
+                { id: 'easy_1', name: 'HTML & CSS', lvl: '100' },
+                { id: 'medium_0', name: 'Data Structures', lvl: '200' },
+                { id: 'hard_0', name: 'Algorithms (Big O)', lvl: '400' }
+            ];
+
+            let totalPoints = 0;
+            let attemptedCount = 0;
+            tbody.innerHTML = '';
+
+            modules.forEach(m => {
+                const scoreVal = localStorage.getItem(`quiz_${m.id}`);
+                if (scoreVal !== null) {
+                    const val = parseInt(scoreVal);
+                    const gradeInfo = getGrade(val);
+                    totalPoints += gradeInfo.points;
+                    attemptedCount++;
+
+                    tbody.innerHTML += `
+                        <tr>
+                            <td style="font-weight: 500;">${m.name}</td>
+                            <td>Level ${m.lvl}</td>
+                            <td>${val} / 10</td>
+                            <td><span class="grade-badge ${gradeInfo.class}">${gradeInfo.letter}</span></td>
+                        </tr>
+                    `;
+                }
+            });
+
+            if (attemptedCount === 0) {
+                tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; padding: 40px;">No quiz records found. Go take a quiz!</td></tr>';
+                document.getElementById('gpa-val').innerText = '0.00';
+            } else {
+                const gpa = (totalPoints / attemptedCount).toFixed(2);
+                document.getElementById('gpa-val').innerText = gpa;
+            }
+        }
+
+        function getGrade(score) {
+            if (score >= 9) return { letter: 'A+', points: 4.0, class: 'grade-high' };
+            if (score >= 7) return { letter: 'B', points: 3.0, class: 'grade-high' };
+            if (score >= 5) return { letter: 'C', points: 2.0, class: 'grade-med' };
+            return { letter: 'F', points: 0.0, class: 'grade-low' };
+        }
+
+        function clearGrades() {
+            if(confirm("Are you sure you want to clear all records?")) {
+                const modules = ['easy_0', 'easy_1', 'medium_0', 'hard_0'];
+                modules.forEach(id => localStorage.removeItem(`quiz_${id}`));
+                loadGrades();
+            }
+        }
+
+        // Check for URL parameter to switch tab
+        window.onload = () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const view = urlParams.get('view');
+            if (view === 'grades') {
+                switchTab('grades');
+            }
+        };
     </script>
 </body>
 </html>
